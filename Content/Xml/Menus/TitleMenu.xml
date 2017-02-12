@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Menu>
+  <Effects>FadeEffect</Effects>
+  <Axis>Y</Axis>
+  <item>
+      <LinkType>Screen</LinkType>
+      <LinkID>GameplayScreen</LinkID>
+      <image>
+        <Text>New Game</Text>
+      </image>
+  </item>
+  <item>
+      <LinkType>Menu</LinkType>
+      <LinkID>Menus/Options.xml</LinkID>
+      <image>
+        <Text>Options</Text>
+      </image>
+  </item>
+  <item>
+      <image>
+        <Text>Credits</Text>
+      </image>
+  </item>
+  <item>
+    <LinkType>Screen</LinkType>
+    <LinkID>ExitScreen</LinkID>
+    <image>
+      <Text>Exit</Text>
+    </image>
+  </item>
+</Menu>

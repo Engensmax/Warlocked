@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Menu>
+  <Axis>Y</Axis>
+  <Effects>FadeEffect</Effects>
+  <item>
+    <LinkType>Menu</LinkType>
+    <LinkID>Menus/Options.xml</LinkID>
+    <image>
+      <Text>Graphics</Text>
+    </image>
+  </item>
+  <item>
+    <LinkType>Menu</LinkType>
+    <LinkID>Menus/Options.xml</LinkID>
+    <image>
+      <Text>Sound</Text>
+    </image>
+  </item>
+  <item>
+    <LinkType>Menu</LinkType>
+    <LinkID>Menus/Options.xml</LinkID>
+    <image>
+      <Text>Peripherals</Text>
+    </image>
+  </item>
+  <item>
+    <LinkType>Menu</LinkType>
+    <LinkID>Menus/TitleMenu.xml</LinkID>
+    <image>
+      <Text>Back</Text>
+    </image>
+  </item>
+</Menu>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LoadingScreen>
+  <image>
+    <Path>Loading Picture</Path>
+    <Text>Loading</Text>
+    <Scale>
+      <X>1</X>
+      <Y>1</Y>
+    </Scale>
+    <Position>
+      <X>0</X>
+      <Y>0</Y>
+    </Position>
+  </image>
+  </LoadingScreen>
