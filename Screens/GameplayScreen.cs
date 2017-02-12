@@ -20,12 +20,10 @@ namespace Warlocked
     class GameplayScreen : GameScreen
     {
         private EntityWorld world;
-        private Image background;
         
 
         public GameplayScreen()
         {
-            this.background = new XmlManager<Image>().Load("background.xml");
             
             this.world = new EntityWorld();
 
@@ -39,13 +37,11 @@ namespace Warlocked
 
         public override void LoadContent()
         {
-            background.LoadContent();
             base.LoadContent();
         }
 
         public override void UnloadContent()
         {
-            background.UnloadContent();
             world.UnloadContent();
             base.UnloadContent();
         }
@@ -53,7 +49,6 @@ namespace Warlocked
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            background.Update(gameTime);
             EntitySystem.BlackBoard.SetEntry<GameTime>("GameTime", gameTime);
             world.Update();
             if (InputManager.Instance.KeyPressed(Keys.Escape))
@@ -62,7 +57,6 @@ namespace Warlocked
 
         public override void Draw()
         {
-            background.Draw();
             base.Draw();
             world.Draw();
         }
