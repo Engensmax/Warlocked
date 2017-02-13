@@ -15,7 +15,7 @@ using Artemis.System;
 
 namespace Warlocked
 {
-    public class Image : IComponent
+    public class Image
     {
         public float alpha;
         public string text, fontName, path;

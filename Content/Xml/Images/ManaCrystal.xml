@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
   <Image>
     <path>ManaCrystal</path>
+    <effects>FadeEffect</effects>
     <scale>
       <X>1</X>
       <Y>1</Y>

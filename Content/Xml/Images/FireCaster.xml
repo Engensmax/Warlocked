@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Image>
+  <path>FireCaster</path>
+  <isVisible>true</isVisible>
+  <effects>SpriteSheetEffect</effects>
+  <spriteSheetEffect>
+    <item>7</item>
+    <item>7</item>
+    <item>7</item>
+    <item>7</item>
+    <item>8</item>
+    <item>8</item>
+    <item>8</item>
+    <item>8</item>
+    <item>9</item>
+    <item>9</item>
+    <item>9</item>
+    <item>9</item>
+    <item>6</item>
+    <item>6</item>
+    <item>6</item>
+    <item>6</item>
+    <item>13</item>
+    <item>13</item>
+    <item>13</item>
+    <item>13</item>
+    <item>6</item>
+    <isContinuous>true</isContinuous>
+  </spriteSheetEffect>
+</Image>

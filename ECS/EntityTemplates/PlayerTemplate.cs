@@ -22,10 +22,13 @@ namespace Warlocked
             entity.AddComponentFromPool<Health>();
             entity.AddComponentFromPool<Mana>();
             entity.AddComponentFromPool<Position>();
+            entity.AddComponentFromPool<Velocity>();
             entity.AddComponentFromPool<Input>();
             entity.AddComponentFromPool<Appearance>();
 
 
+            entity.AddComponentFromPool<Velocity>().moveSpeed = 3;
+            entity.GetComponent<Appearance>().Initialize("Images/FireCaster.xml");
 
 
 

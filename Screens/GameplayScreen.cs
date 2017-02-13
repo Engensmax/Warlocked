@@ -30,7 +30,12 @@ namespace Warlocked
 
             this.world.InitializeAll(true);
 
-            //player1 = world.CreateEntityFromTemplate(PlayerTemplate.Name);
+            player1 = world.CreateEntityFromTemplate(PlayerTemplate.Name);
+            player2 = world.CreateEntityFromTemplate(PlayerTemplate.Name);
+            player1.GetComponent<Input>().Initialize(1);
+            player2.GetComponent<Input>().Initialize(2);
+            player1.GetComponent<Position>().position = new Vector2(200, 208);
+            player2.GetComponent<Position>().position = new Vector2(600, 208);
 
 
         }

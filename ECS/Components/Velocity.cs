@@ -11,6 +11,7 @@ namespace Warlocked
     class Velocity : ComponentPoolable
     {
         public Vector2 velocity;
+        public int moveSpeed;
 
         public Velocity()
         {
