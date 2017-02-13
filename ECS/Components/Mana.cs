@@ -16,7 +16,7 @@ namespace Warlocked
         public Mana()
         {
             this.maxMana = 0;
-            this.currentMana = 0;
+            this.currentMana = 1;
             this.regenRate = 1;
         }
         //obligatory for poolable Components

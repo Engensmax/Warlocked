@@ -76,7 +76,7 @@ namespace Warlocked
             }
         }
 
-        public ScreenManager()
+        private ScreenManager()
         {
             
             Dimensions = new Vector2(800,480);

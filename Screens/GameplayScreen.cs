@@ -14,11 +14,15 @@ using Artemis.Interface;
 using Artemis.Manager;
 using Artemis.System;
 using Artemis.Utils;
+using log4net;
 
 namespace Warlocked
 {
     class GameplayScreen : GameScreen
     {
+
+        private static readonly ILog LOGGER = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private EntityWorld world;
         private Entity player1, player2;
         
@@ -36,7 +40,6 @@ namespace Warlocked
             player2.GetComponent<Input>().Initialize(2);
             player1.GetComponent<Position>().position = new Vector2(200, 208);
             player2.GetComponent<Position>().position = new Vector2(600, 208);
-
 
         }
 

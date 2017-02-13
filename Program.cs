@@ -13,7 +13,7 @@ namespace Warlocked
         [STAThread]
         static void Main()
         {
-            using (var game = new Warlocked())
+            using (var game = Warlocked.Instance)
                 game.Run();
         }
     }

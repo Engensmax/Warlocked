@@ -11,12 +11,17 @@ using Artemis.Utils;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
+using log4net;
 
 namespace Warlocked
 {
     [ArtemisEntitySystem(GameLoopType = GameLoopType.Update, Layer = 1)]
     internal class CollisionSystem : EntitySystem
     {
+
+        private static readonly ILog LOGGER = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
+
         public CollisionSystem()
             : base(Aspect.All(typeof(Position), typeof(Collision)))
         {
@@ -25,7 +30,6 @@ namespace Warlocked
         public override void Process()
         {
             base.Process();
-
 
 
         }
@@ -38,7 +42,8 @@ namespace Warlocked
                 {
                     if (CollisionExists(entities[i], entities[j]))
                     {
-                        System.Diagnostics.Debug.WriteLine("Collision!!");
+                        LOGGER.Info("Collision!!");
+                        LOGGER.Debug("Collision!!");
                     }
                 }                       
             }

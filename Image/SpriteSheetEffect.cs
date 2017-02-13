@@ -57,9 +57,8 @@ namespace Warlocked
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            if (image.isActive)
+            if (this.isActive)
             {
-                image.isVisible = true;
                 frameCounter += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
                 if (frameCounter >= switchFrame)
                 {
@@ -72,13 +71,15 @@ namespace Warlocked
                         if (isContinuous)
                             currentFrame.X = 0;
                         else
-                            image.isActive = false;
+                        {
+                            currentFrame.X = 0;
+                            this.isActive = false;
+                        }
                     }
                 }
             }
             else
             {
-                image.isVisible = false;
                 currentFrame.X = 0;
             }
             image.sourceRect = new Rectangle((int)currentFrame.X * frameWidth,

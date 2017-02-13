@@ -10,10 +10,13 @@ namespace Warlocked
     [Artemis.Attributes.ArtemisComponentPool()]
     class Spells : ComponentPoolable
     {
-        public List<string> spells;
+        public List<ISpell> spells;
+        public bool isCasting;
         
         public Spells()
         {
+            spells = new List<ISpell>();
+            isCasting = false;
         }
 
         public void Cleanup()

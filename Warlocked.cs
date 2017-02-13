@@ -2,7 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Artemis.System;
+using log4net;
 
+
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 namespace Warlocked
 {
     /// <summary>
@@ -10,9 +13,13 @@ namespace Warlocked
     /// </summary>
     public class Warlocked : Game
     {
+        private static readonly ILog LOGGER = LogManager.GetLogger("Warlocked");
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private static Warlocked instance;
+
+
 
         public static Warlocked Instance
         {
@@ -26,8 +33,9 @@ namespace Warlocked
             }
         }
 
-        public Warlocked()
+        private Warlocked()
         {
+            LOGGER.Info("Start Warlocked");
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }

@@ -29,7 +29,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <OutputPath>.\</OutputPath>
     <DefineConstants>TRACE;LINUX</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -62,6 +62,10 @@
     <Compile Include="ECS\Systems\ManaRegenSystem.cs" />
     <Compile Include="Managers\DictionaryItem.cs" />
     <Compile Include="Managers\RandomManager.cs" />
+    <Compile Include="Spell\FireBallSpell.cs" />
+    <Compile Include="Spell\ISpell.cs" />
+    <Compile Include="Spell\EffectSpell.cs" />
+    <Compile Include="Spell\SummoningSpell.cs" />
     <Compile Include="Warlocked.cs" />
     <Compile Include="Image\BlinkEffect.cs" />
     <Compile Include="Image\FadeEffect.cs" />
@@ -101,7 +105,9 @@
     <Content Include="Content\Xml\Images\ManaCrystal.xml" />
     <Content Include="Content\Xml\LoadingScreen.xml" />
     <Content Include="Content\Xml\Menus\Options.xml" />
-    <Content Include="Content\Xml\Menus\TitleMenu.xml" />
+    <Content Include="Content\Xml\Menus\TitleMenu.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\Xml\Screenmanager.xml" />
     <Content Include="Content\Xml\TitleScreen.xml">
       <SubType>Designer</SubType>
@@ -113,11 +119,19 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Artemis\Artemis_XNA_INDEPENDENT\Artemis.csproj">
       <Project>{22c89af2-e1cf-4976-91b9-7d33773dc6e7}</Project>
       <Name>Artemis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\log4net-2.0.7\src\log4net.vs2012.csproj">
+      <Project>{181fe707-e161-4722-9f38-6aaab6faa106}</Project>
+      <Name>log4net.vs2012</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
