@@ -14,14 +14,14 @@ namespace Warlocked
     {
         protected ContentManager content;
         [XmlIgnore]
-        public Type Type;
+        public Type type;
 
         public string XmlPath;
 
         public GameScreen()
         {
-            Type = this.GetType();
-            XmlPath = "Load/" + Type.ToString().Replace("NinjaStriker.", "") + ".xml";
+            type = this.GetType();
+            XmlPath = "Load/" + type.ToString().Replace("NinjaStriker.", "") + ".xml";
         }
 
         public virtual void LoadContent()

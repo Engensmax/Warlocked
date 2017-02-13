@@ -50,8 +50,8 @@ namespace Warlocked
         {
             newScreen = (GameScreen)Activator.CreateInstance(Type.GetType("Warlocked." + screenName));
             image.isActive = true;
-            image.FadeEffect.Increase = true;
-            image.Alpha = 0.1f;
+            image.fadeEffect.increase = true;
+            image.alpha = 0.1f;
             IsTransitioning = true;
         }
         void Transition(GameTime gameTime)
@@ -59,16 +59,16 @@ namespace Warlocked
             if (IsTransitioning)
             {
                 image.Update(gameTime);
-                if (image.Alpha == 1.0f)
+                if (image.alpha == 1.0f)
                 {
                     currentScreen.UnloadContent();
                     currentScreen = newScreen;
-                    xmlGameScreenManager.Type = currentScreen.Type;
+                    xmlGameScreenManager.Type = currentScreen.type;
                     if (File.Exists(currentScreen.XmlPath))
                         currentScreen = xmlGameScreenManager.Load(currentScreen.XmlPath);
                     currentScreen.LoadContent();
                 }
-                else if (image.Alpha == 0.0f)
+                else if (image.alpha == 0.0f)
                 {
                     image.isActive = false;
                     IsTransitioning = false;
@@ -82,7 +82,7 @@ namespace Warlocked
             Dimensions = new Vector2(800,480);
             currentScreen = new LoadingScreen();
             xmlGameScreenManager = new XmlManager<GameScreen>();
-            xmlGameScreenManager.Type = currentScreen.Type;
+            xmlGameScreenManager.Type = currentScreen.type;
             currentScreen = xmlGameScreenManager.Load("LoadingScreen.xml");
 
 

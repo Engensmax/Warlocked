@@ -10,13 +10,13 @@ namespace Warlocked
 {
     public class FadeEffect : ImageEffect
     {
-        public float FadeSpeed;
-        public bool Increase;
+        public float fadeSpeed;
+        public bool increase;
 
         public FadeEffect()
         {
-            FadeSpeed = 2;
-            Increase = false;
+            fadeSpeed = 2;
+            increase = false;
         }
         public override void LoadContent(ref Image Image)
         {
@@ -32,24 +32,24 @@ namespace Warlocked
 
             if (image.isActive)
             {
-                if (!Increase)
-                    image.Alpha -= FadeSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (!increase)
+                    image.alpha -= fadeSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 else
-                    image.Alpha += FadeSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    image.alpha += fadeSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                if (image.Alpha < 0.0f)
+                if (image.alpha < 0.0f)
                 {
-                    Increase = true;
-                    image.Alpha = 0.0f;
+                    increase = true;
+                    image.alpha = 0.0f;
                 }
-                else if (image.Alpha > 1.0f)
+                else if (image.alpha > 1.0f)
                 {
-                    Increase = false;
-                    image.Alpha = 1.0f;
+                    increase = false;
+                    image.alpha = 1.0f;
                 }
             }
             else
-                image.Alpha = 1.0f;
+                image.alpha = 1.0f;
         }
 
     }

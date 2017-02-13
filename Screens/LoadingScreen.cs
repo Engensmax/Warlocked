@@ -16,10 +16,9 @@ namespace Warlocked
         public override void LoadContent()
         {
             base.LoadContent();
-            XmlManager<LoadingScreen> xmlManager = new XmlManager<LoadingScreen>();
-            image = xmlManager.Load("LoadingScreen.xml").image;
+            image = new XmlManager<LoadingScreen>().Load("LoadingScreen.xml").image;
             image.LoadContent();
-            image.FadeEffect.FadeSpeed = 0.5f;
+            image.fadeEffect.fadeSpeed = 0.5f;
         }
         public override void UnloadContent()
         {

@@ -20,17 +20,17 @@ namespace Warlocked
             if(isTransitioning)
             {
                 
-                for (int i = 0; i < menu.Items.Count; i++)
+                for (int i = 0; i < menu.items.Count; i++)
                 {
-                    menu.Items[i].image.Update(gameTime);
-                    float first = menu.Items[0].image.Alpha;
-                    float last = menu.Items[menu.Items.Count - 1].image.Alpha;
+                    menu.items[i].image.Update(gameTime);
+                    float first = menu.items[0].image.alpha;
+                    float last = menu.items[menu.items.Count - 1].image.alpha;
                     if (first == 0.0f && last == 0.0f)
-                        menu.ID = menu.Items[menu.ItemNumber].LinkID;
+                        menu.ID = menu.items[menu.ItemNumber].LinkID;
                     else if (first == 1.0f && last == 1.0f)
                     {
                         isTransitioning = false;
-                        foreach (MenuItem item in menu.Items)
+                        foreach (MenuItem item in menu.items)
                             item.image.RestoreEffects();
                     }
                 }
@@ -51,7 +51,7 @@ namespace Warlocked
             menu.OnMenuChange += menu_OnMenuChange;
             menu.Transition(0.0f);
 
-            foreach (MenuItem item in menu.Items)
+            foreach (MenuItem item in menu.items)
             {
                 item.image.StoreEffects();
                 item.image.ActivateEffect("FadeEffect");
@@ -73,13 +73,13 @@ namespace Warlocked
             if ((InputManager.Instance.KeyPressed(Keys.Enter) || 
                 InputManager.Instance.ButtonPressed(Buttons.A)) && !isTransitioning)
             {
-                if (menu.Items[menu.ItemNumber].LinkType == "Screen")
-                    ScreenManager.Instance.ChangeScreens(menu.Items[menu.ItemNumber].LinkID);
+                if (menu.items[menu.ItemNumber].LinkType == "Screen")
+                    ScreenManager.Instance.ChangeScreens(menu.items[menu.ItemNumber].LinkID);
                 else
                 {
                     isTransitioning = true;
                     menu.Transition(1.0f);
-                    foreach (MenuItem item in menu.Items)
+                    foreach (MenuItem item in menu.items)
                     {
                         item.image.StoreEffects();
                         item.image.ActivateEffect("FadeEffect");

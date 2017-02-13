@@ -38,6 +38,24 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ECS\Components\Input.cs" />
+    <Compile Include="ECS\Components\Spells.cs" />
+    <Compile Include="ECS\Components\Appearance.cs" />
+    <Compile Include="ECS\Components\Velocity.cs" />
+    <Compile Include="ECS\Components\Position.cs" />
+    <Compile Include="ECS\Components\Damage.cs" />
+    <Compile Include="ECS\Components\Health.cs" />
+    <Compile Include="ECS\Components\Mana.cs" />
+    <Compile Include="ECS\EntityTemplates\ManaShardTemplate.cs" />
+    <Compile Include="ECS\EntityTemplates\ManaCrystalTemplate.cs" />
+    <Compile Include="ECS\EntityTemplates\MonsterTemplate.cs" />
+    <Compile Include="ECS\EntityTemplates\PlayerTemplate.cs" />
+    <Compile Include="Managers\Dictionary.cs" />
+    <Compile Include="Managers\HUDManager.cs" />
+    <Compile Include="ECS\Systems\DrawSystem.cs" />
+    <Compile Include="ECS\Systems\MovementSystem.cs" />
+    <Compile Include="ECS\Systems\ManaRegenSystem.cs" />
+    <Compile Include="Managers\DictionaryItem.cs" />
     <Compile Include="Warlocked.cs" />
     <Compile Include="Image\BlinkEffect.cs" />
     <Compile Include="Image\FadeEffect.cs" />
@@ -53,8 +71,8 @@
     <Compile Include="Screens\GameplayScreen.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\LoadingScreen.cs" />
-    <Compile Include="Screens\Menu.cs" />
-    <Compile Include="Screens\MenuItem.cs" />
+    <Compile Include="Managers\Menu.cs" />
+    <Compile Include="Managers\MenuItem.cs" />
     <Compile Include="Screens\TitleScreen.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
+    <Content Include="Content\Xml\HUD.xml" />
     <Content Include="Content\Xml\LoadingScreen.xml" />
     <Content Include="Content\Xml\Menus\Options.xml" />
     <Content Include="Content\Xml\Menus\TitleMenu.xml" />
@@ -84,11 +103,7 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Components\" />
-    <Folder Include="EntityTemplates\" />
-    <Folder Include="Systems\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\Artemis\Artemis_XNA_INDEPENDENT\Artemis.csproj">
       <Project>{22c89af2-e1cf-4976-91b9-7d33773dc6e7}</Project>

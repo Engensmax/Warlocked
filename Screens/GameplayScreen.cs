@@ -24,7 +24,7 @@ namespace Warlocked
 
         public GameplayScreen()
         {
-            
+            HUDManager.Instance.Initialize();
             this.world = new EntityWorld();
 
             this.world.InitializeAll(true);
@@ -37,11 +37,14 @@ namespace Warlocked
 
         public override void LoadContent()
         {
+            HUDManager.Instance.LoadContent();
             base.LoadContent();
+            
         }
 
         public override void UnloadContent()
         {
+            HUDManager.Instance.UnloadContent();
             world.UnloadContent();
             base.UnloadContent();
         }
@@ -57,6 +60,7 @@ namespace Warlocked
 
         public override void Draw()
         {
+            HUDManager.Instance.Draw(new List<Entity>());
             base.Draw();
             world.Draw();
         }

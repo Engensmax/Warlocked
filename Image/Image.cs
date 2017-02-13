@@ -17,14 +17,14 @@ namespace Warlocked
 {
     public class Image : IComponent
     {
-        public float Alpha;
-        public string Text, FontName, Path;
-        public Vector2 Position, Scale;
-        public Rectangle SourceRect;
+        public float alpha;
+        public string text, fontName, path;
+        public Vector2 position, scale;
+        public Rectangle sourceRect;
         public bool isActive;
         
         [XmlIgnore]
-        public Texture2D Texture;
+        public Texture2D texture;
         [XmlIgnore]
         public Vector2 origin;
         [XmlIgnore]
@@ -35,12 +35,12 @@ namespace Warlocked
         public SpriteFont font;
         [XmlIgnore]
         public Dictionary<string, ImageEffect> effectList;
-        public string Effects;
+        public string effects;
         public bool isVisible;
 
-        public FadeEffect FadeEffect;
-        public SpriteSheetEffect SpriteSheetEffect;
-        public BlinkEffect BlinkEffect;
+        public FadeEffect fadeEffect;
+        public SpriteSheetEffect spriteSheetEffect;
+        public BlinkEffect blinkEffect;
 
         void SetEffect<T>(ref T effect)
         {
@@ -77,14 +77,14 @@ namespace Warlocked
         
         public void StoreEffects()
         {
-            Effects = String.Empty;
+            effects = String.Empty;
             foreach(var effect in effectList)
             {
                 if(effect.Value.isActive)
-                    Effects += effect.Key + ":";
+                    effects += effect.Key + ":";
             }
-            if (Effects != String.Empty)
-                Effects.Remove(Effects.Length - 1);
+            if (effects != String.Empty)
+                effects.Remove(effects.Length - 1);
         }
 
         public void RestoreEffects()
@@ -93,7 +93,7 @@ namespace Warlocked
             {
                 DeactivateEffect(effect.Key);
 
-                string[] split = Effects.Split(':');
+                string[] split = effects.Split(':');
                 foreach (string s in split)
                     ActivateEffect(s);
             }
@@ -101,12 +101,12 @@ namespace Warlocked
 
         public Image()
         {
-            Path = Text = Effects = String.Empty;
-            FontName = "Font";
-            Position = Vector2.Zero;
-            Scale = Vector2.One;
-            Alpha = 1.0f;
-            SourceRect = Rectangle.Empty;
+            path = text = effects = String.Empty;
+            fontName = "Font";
+            position = Vector2.Zero;
+            scale = Vector2.One;
+            alpha = 1.0f;
+            sourceRect = Rectangle.Empty;
             effectList = new Dictionary<string, ImageEffect>();
             isVisible = true;
         }
@@ -116,47 +116,47 @@ namespace Warlocked
             content = new ContentManager(
                 ScreenManager.Instance.Content.ServiceProvider, "Content");
 
-            if (Path != String.Empty)
-                Texture = content.Load<Texture2D>(Path);
+            if (path != String.Empty)
+                texture = content.Load<Texture2D>(path);
 
-            font = content.Load<SpriteFont>(FontName);
+            font = content.Load<SpriteFont>(fontName);
 
             Vector2 dimensions = Vector2.Zero;
 
-            if (Texture != null)
-                dimensions.X += Texture.Width;
-            dimensions.X += font.MeasureString(Text).X;
+            if (texture != null)
+                dimensions.X += texture.Width;
+            dimensions.X += font.MeasureString(text).X;
 
-            if (Texture != null)
-                dimensions.Y = Math.Max(Texture.Height, font.MeasureString(Text).Y);
+            if (texture != null)
+                dimensions.Y = Math.Max(texture.Height, font.MeasureString(text).Y);
             else
-                dimensions.Y = font.MeasureString(Text).Y;
+                dimensions.Y = font.MeasureString(text).Y;
 
-            if (SourceRect == Rectangle.Empty)
-                SourceRect = new Rectangle(0, 0, (int)dimensions.X, (int)dimensions.Y);
+            if (sourceRect == Rectangle.Empty)
+                sourceRect = new Rectangle(0, 0, (int)dimensions.X, (int)dimensions.Y);
 
             renderTarget = new RenderTarget2D(ScreenManager.Instance.graphicsDevice,
                 (int)dimensions.X, (int)dimensions.Y);
             ScreenManager.Instance.graphicsDevice.SetRenderTarget(renderTarget);
             ScreenManager.Instance.graphicsDevice.Clear(Color.Transparent);
             ScreenManager.Instance.SpriteBatch.Begin();
-            if (Texture != null)
-                ScreenManager.Instance.SpriteBatch.Draw(Texture, Vector2.Zero, Color.White);
-            ScreenManager.Instance.SpriteBatch.DrawString(font, Text, Vector2.Zero, Color.White);
+            if (texture != null)
+                ScreenManager.Instance.SpriteBatch.Draw(texture, Vector2.Zero, Color.White);
+            ScreenManager.Instance.SpriteBatch.DrawString(font, text, Vector2.Zero, Color.White);
             ScreenManager.Instance.SpriteBatch.End();
 
-            Texture = renderTarget;
+            texture = renderTarget;
 
             ScreenManager.Instance.graphicsDevice.SetRenderTarget(null);
 
 
-            SetEffect<FadeEffect>(ref FadeEffect);
-            SetEffect<SpriteSheetEffect>(ref SpriteSheetEffect);
-            SetEffect<BlinkEffect>(ref BlinkEffect);
+            SetEffect<FadeEffect>(ref fadeEffect);
+            SetEffect<SpriteSheetEffect>(ref spriteSheetEffect);
+            SetEffect<BlinkEffect>(ref blinkEffect);
 
-            if (Effects != String.Empty)
+            if (effects != String.Empty)
             {
-                string[] split = Effects.Split(':');
+                string[] split = effects.Split(':');
                 foreach (string item in split)
                     ActivateEffect(item);
             }
@@ -185,10 +185,10 @@ namespace Warlocked
             if (isVisible)
             {
                 var spriteBatch = EntitySystem.BlackBoard.GetEntry<SpriteBatch>("SpriteBatch");
-                origin = new Vector2(SourceRect.Width / 2,
-                    SourceRect.Height / 2);
-                spriteBatch.Draw(Texture, Position + origin, SourceRect, Color.White * Alpha,
-                    0.0f, origin, Scale, SpriteEffects.None, 0.0f);
+                origin = new Vector2(sourceRect.Width / 2,
+                    sourceRect.Height / 2);
+                spriteBatch.Draw(texture, position + origin, sourceRect, Color.White * alpha,
+                    0.0f, origin, scale, SpriteEffects.None, 0.0f);
             }
             else { }
         }

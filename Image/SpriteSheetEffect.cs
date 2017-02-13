@@ -13,38 +13,38 @@ namespace Warlocked
     {
         public bool isContinuous;
         [XmlIgnore]
-        public int FrameCounter;
+        public int frameCounter;
         [XmlIgnore]
-        public int SwitchFrame;
+        public int switchFrame;
         [XmlIgnore]
-        public Vector2 CurrentFrame;
+        public Vector2 currentFrame;
         [XmlElement ("item")]
-        public List<int> AmountOfFramesPerLine;
-        public int FrameWidth
+        public List<int> amountOfFramesPerLine;
+        public int frameWidth
         {
             get
             {
-                if (image.Texture != null)
-                    return image.Texture.Width / (int)AmountOfFramesPerLine.Max(e => e);
+                if (image.texture != null)
+                    return image.texture.Width / (int)amountOfFramesPerLine.Max(e => e);
                 return 0;
             }
         }
 
-        public int FrameHeight
+        public int frameHeight
         {
             get
             {
-                if (image.Texture != null)
-                    return image.Texture.Height / (int)AmountOfFramesPerLine.Count;
+                if (image.texture != null)
+                    return image.texture.Height / (int)amountOfFramesPerLine.Count;
                 return 0;
             }
         }
 
         public SpriteSheetEffect()
         {
-            CurrentFrame = new Vector2(0, 0);
-            SwitchFrame = 100;
-            FrameCounter = 0;
+            currentFrame = new Vector2(0, 0);
+            switchFrame = 100;
+            frameCounter = 0;
         }
         public override void LoadContent(ref Image Image)
         {
@@ -60,17 +60,17 @@ namespace Warlocked
             if (image.isActive)
             {
                 image.isVisible = true;
-                FrameCounter += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (FrameCounter >= SwitchFrame)
+                frameCounter += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (frameCounter >= switchFrame)
                 {
-                    FrameCounter = 0;
-                    CurrentFrame.X++;
-                    if (CurrentFrame.Y >= AmountOfFramesPerLine.Count)
-                        CurrentFrame.Y = 0;
-                    if (CurrentFrame.X >= AmountOfFramesPerLine[(int)CurrentFrame.Y])
+                    frameCounter = 0;
+                    currentFrame.X++;
+                    if (currentFrame.Y >= amountOfFramesPerLine.Count)
+                        currentFrame.Y = 0;
+                    if (currentFrame.X >= amountOfFramesPerLine[(int)currentFrame.Y])
                     {
                         if (isContinuous)
-                            CurrentFrame.X = 0;
+                            currentFrame.X = 0;
                         else
                             image.isActive = false;
                     }
@@ -79,10 +79,10 @@ namespace Warlocked
             else
             {
                 image.isVisible = false;
-                CurrentFrame.X = 0;
+                currentFrame.X = 0;
             }
-            image.SourceRect = new Rectangle((int)CurrentFrame.X * FrameWidth,
-                (int)CurrentFrame.Y * FrameHeight, FrameWidth, FrameHeight);
+            image.sourceRect = new Rectangle((int)currentFrame.X * frameWidth,
+                (int)currentFrame.Y * frameHeight, frameWidth, frameHeight);
         }
 
     }

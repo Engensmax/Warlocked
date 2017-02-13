@@ -83,9 +83,14 @@ namespace Warlocked
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+
+            if (InputManager.Instance.KeyPressed(Keys.Escape))
+               Warlocked.Instance.Exit();
+
             ScreenManager.Instance.Update(gameTime);
             base.Update(gameTime);
         }
+        
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -94,7 +99,7 @@ namespace Warlocked
         protected override void Draw(GameTime gameTime)
         {
 
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.Gray);
 
             spriteBatch.Begin();
             ScreenManager.Instance.Draw();

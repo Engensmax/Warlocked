@@ -14,10 +14,10 @@ namespace Warlocked
     {
         public event EventHandler OnMenuChange;
 
-        public string Axis;
-        public string Effects;
+        public string axis;
+        public string effects;
         [XmlElement("item")]
-        public List<MenuItem> Items;
+        public List<MenuItem> items;
         int itemNumber;
         string id;
 
@@ -38,37 +38,37 @@ namespace Warlocked
 
         public void Transition(float alpha)
         {
-            foreach(MenuItem item in Items)
+            foreach(MenuItem item in items)
             {
                 item.image.isActive = true;
-                item.image.Alpha = alpha;
+                item.image.alpha = alpha;
                 if (alpha == 0.0f)
-                    item.image.FadeEffect.Increase = true;
+                    item.image.fadeEffect.increase = true;
                 else
-                    item.image.FadeEffect.Increase = false;
+                    item.image.fadeEffect.increase = false;
             }
         }
 
         void AlignMenuItems()
         {
             Vector2 dimensions = Vector2.Zero;
-            foreach (MenuItem item in Items)
-                dimensions += new Vector2(item.image.SourceRect.Width,
-                    item.image.SourceRect.Height);
+            foreach (MenuItem item in items)
+                dimensions += new Vector2(item.image.sourceRect.Width,
+                    item.image.sourceRect.Height);
 
             dimensions = new Vector2((ScreenManager.Instance.Dimensions.X -
                 dimensions.X) / 2, (ScreenManager.Instance.Dimensions.Y - dimensions.Y) / 2);
 
-            foreach (MenuItem item in Items)
+            foreach (MenuItem item in items)
             {
-                if (Axis == "X")
-                    item.image.Position = new Vector2(dimensions.X,
-                        (ScreenManager.Instance.Dimensions.Y - item.image.SourceRect.Height) / 2);
-                else if (Axis == "Y")
-                    item.image.Position = new Vector2((ScreenManager.Instance.Dimensions.X - 
-                        item.image.SourceRect.Width) / 2, dimensions.Y);
-                dimensions += new Vector2(item.image.SourceRect.Width,
-                    item.image.SourceRect.Height);
+                if (axis == "X")
+                    item.image.position = new Vector2(dimensions.X,
+                        (ScreenManager.Instance.Dimensions.Y - item.image.sourceRect.Height) / 2);
+                else if (axis == "Y")
+                    item.image.position = new Vector2((ScreenManager.Instance.Dimensions.X - 
+                        item.image.sourceRect.Width) / 2, dimensions.Y);
+                dimensions += new Vector2(item.image.sourceRect.Width,
+                    item.image.sourceRect.Height);
 
             }
 
@@ -78,14 +78,14 @@ namespace Warlocked
         {
             id = String.Empty;
             itemNumber = 0;
-            Effects = String.Empty;
-            Axis = "Y";
-            Items = new List<MenuItem>();
+            effects = String.Empty;
+            axis = "Y";
+            items = new List<MenuItem>();
         }
         public void LoadContent()
         {
-            string[] split = Effects.Split(':');
-            foreach(MenuItem item in Items)
+            string[] split = effects.Split(':');
+            foreach(MenuItem item in items)
             {
                 item.image.LoadContent();
                 foreach (string s in split)
@@ -95,13 +95,13 @@ namespace Warlocked
         }
         public void UnloadContent()
         {
-            foreach (MenuItem item in Items)
+            foreach (MenuItem item in items)
                 item.image.UnloadContent();
 
         }
         public void Update(GameTime gameTime)
         {
-            if (Axis == "X")
+            if (axis == "X")
             {
                 if (InputManager.Instance.KeyPressed(Keys.Right) ||
                     InputManager.Instance.ButtonPressed(Buttons.DPadRight))
@@ -110,7 +110,7 @@ namespace Warlocked
                     InputManager.Instance.ButtonPressed(Buttons.DPadLeft))
                     itemNumber--;
             }
-            if( Axis == "Y")
+            if( axis == "Y")
             {
                 if (InputManager.Instance.KeyPressed(Keys.Down) ||
                     InputManager.Instance.ButtonPressed(Buttons.DPadDown))
@@ -122,18 +122,18 @@ namespace Warlocked
 
             if (itemNumber < 0)
                 itemNumber = 0;
-            else if (itemNumber > Items.Count - 1)
-                itemNumber = Items.Count - 1;
+            else if (itemNumber > items.Count - 1)
+                itemNumber = items.Count - 1;
 
-            for (int i = 0; i < Items.Count; i++)
+            for (int i = 0; i < items.Count; i++)
             {
                 {
                     if (i == itemNumber)
-                        Items[i].image.isActive = true;
+                        items[i].image.isActive = true;
                     else
-                        Items[i].image.isActive = false;
+                        items[i].image.isActive = false;
 
-                    Items[i].image.Update(gameTime);
+                    items[i].image.Update(gameTime);
 
                 }
             }
@@ -142,7 +142,7 @@ namespace Warlocked
 
         public void Draw()
         {
-            foreach (MenuItem item in Items)
+            foreach (MenuItem item in items)
                 item.image.Draw();
 
         }
