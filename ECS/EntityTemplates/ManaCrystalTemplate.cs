@@ -1,6 +1,7 @@
 ﻿using Artemis;
 using Artemis.Attributes;
 using Artemis.Interface;
+using System;
 
 using Microsoft.Xna.Framework;
 
@@ -8,7 +9,7 @@ namespace Warlocked
 {  
     /// <summary>The player template.</summary>
     [ArtemisEntityTemplate(Name)]
-    public class ManaCrystal : IEntityTemplate
+    public class ManaCrystalTemplate : IEntityTemplate
     {
         /// <summary>The name.</summary>
         public const string Name = "ManaCrystal";
@@ -22,7 +23,7 @@ namespace Warlocked
         {
             entity.AddComponentFromPool<Position>();
             entity.AddComponentFromPool<Appearance>();
-
+            entity.GetComponent<Appearance>().Initialize("Images/ManaCrystal.xml");
             entity.Refresh();
             
             return entity;

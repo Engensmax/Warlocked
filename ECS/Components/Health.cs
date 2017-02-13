@@ -9,9 +9,7 @@ namespace Warlocked
     [Artemis.Attributes.ArtemisComponentPool()]
     class Health : ComponentPoolable
     {
-        public float maxHealth { get; private set; }
-        public float currentHealth;
-        public float regenRate;
+        public float maxHealth, currentHealth, regenRate;
 
         public Health()
         {

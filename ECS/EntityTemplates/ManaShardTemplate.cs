@@ -8,7 +8,7 @@ namespace Warlocked
 {  
     /// <summary>The player template.</summary>
     [ArtemisEntityTemplate(Name)]
-    public class ManaShard : IEntityTemplate
+    public class ManaShardTemplate : IEntityTemplate
     {
         /// <summary>The name.</summary>
         public const string Name = "ManaShard";

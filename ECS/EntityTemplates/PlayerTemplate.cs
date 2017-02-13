@@ -23,6 +23,11 @@ namespace Warlocked
             entity.AddComponentFromPool<Mana>();
             entity.AddComponentFromPool<Position>();
             entity.AddComponentFromPool<Input>();
+            entity.AddComponentFromPool<Appearance>();
+
+
+
+
 
             entity.Refresh();
             

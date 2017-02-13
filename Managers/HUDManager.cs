@@ -58,8 +58,6 @@ namespace Warlocked
 
         public void Draw(List<Entity> players)
         {
-            SpriteBatch spriteBatch =
-                EntitySystem.BlackBoard.GetEntry<SpriteBatch>("SpriteBatch");
             foreach (Image image in this.images.Values)
             {
                 image.Draw();

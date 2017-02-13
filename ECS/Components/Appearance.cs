@@ -17,6 +17,12 @@ namespace Warlocked
         {
         }
 
+        public void Initialize(string xmlPath)
+        {
+            this.image = new XmlManager<Image>().Load(xmlPath);
+            this.image.LoadContent();
+        }
+
         public void Cleanup()
         {
         }

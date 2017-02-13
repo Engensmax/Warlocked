@@ -20,6 +20,7 @@ namespace Warlocked
     class GameplayScreen : GameScreen
     {
         private EntityWorld world;
+        private Entity player1, player2;
         
 
         public GameplayScreen()
@@ -29,10 +30,9 @@ namespace Warlocked
 
             this.world.InitializeAll(true);
 
-            //var shuriken = world.CreateEntityFromTemplate(ShurikenTemplate.Name);
-            //System.Diagnostics.Debug.WriteLine(shuriken.GetComponent<Damage>().damage);
-            //shuriken.AddComponentFromPool<Velocity>();
-            
+            //player1 = world.CreateEntityFromTemplate(PlayerTemplate.Name);
+
+
         }
 
         public override void LoadContent()
@@ -51,18 +51,18 @@ namespace Warlocked
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
             EntitySystem.BlackBoard.SetEntry<GameTime>("GameTime", gameTime);
             world.Update();
             if (InputManager.Instance.KeyPressed(Keys.Escape))
                 Warlocked.Instance.Exit();
+            base.Update(gameTime);
         }
 
         public override void Draw()
         {
             HUDManager.Instance.Draw(new List<Entity>());
-            base.Draw();
             world.Draw();
+            base.Draw();
         }
     }
 }

@@ -50,12 +50,14 @@
     <Compile Include="ECS\EntityTemplates\ManaCrystalTemplate.cs" />
     <Compile Include="ECS\EntityTemplates\MonsterTemplate.cs" />
     <Compile Include="ECS\EntityTemplates\PlayerTemplate.cs" />
+    <Compile Include="ECS\Systems\ManaCrystalSpawnSystem.cs" />
     <Compile Include="Managers\Dictionary.cs" />
     <Compile Include="Managers\HUDManager.cs" />
     <Compile Include="ECS\Systems\DrawSystem.cs" />
     <Compile Include="ECS\Systems\MovementSystem.cs" />
     <Compile Include="ECS\Systems\ManaRegenSystem.cs" />
     <Compile Include="Managers\DictionaryItem.cs" />
+    <Compile Include="Managers\RandomManager.cs" />
     <Compile Include="Warlocked.cs" />
     <Compile Include="Image\BlinkEffect.cs" />
     <Compile Include="Image\FadeEffect.cs" />
@@ -91,6 +93,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
     <Content Include="Content\Xml\HUD.xml" />
+    <Content Include="Content\Xml\Images\ManaCrystal.xml" />
     <Content Include="Content\Xml\LoadingScreen.xml" />
     <Content Include="Content\Xml\Menus\Options.xml" />
     <Content Include="Content\Xml\Menus\TitleMenu.xml" />

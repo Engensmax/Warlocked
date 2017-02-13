@@ -33,9 +33,7 @@ namespace Warlocked
         private static void AdjustImagePosition(Entity entity)
         {
             entity.GetComponent<Appearance>().image.position =
-                            entity.GetComponent<Position>().position -
-                            new Vector2(entity.GetComponent<Appearance>().image.sourceRect.Width,
-                                        entity.GetComponent<Appearance>().image.sourceRect.Height);
+                            entity.GetComponent<Position>().position;
         }
     }
 }
