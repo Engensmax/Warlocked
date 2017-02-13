@@ -35,7 +35,7 @@ namespace Warlocked
             {
                 entity.GetComponent<Velocity>().velocity.X =
                     entity.GetComponent<Velocity>().moveSpeed;
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y = 11;
+                entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y = entity.GetComponent<Appearance>().animationsMap["MoveRight"];
             }
             else if (InputManager.Instance.KeyDown(entity.GetComponent<Input>().
                 actionKeysMap[Input.Action.MoveLeft]))
@@ -79,7 +79,6 @@ namespace Warlocked
                 entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive = false;
             else
             {
-                entity.GetComponent<Appearance>().image.isActive = true;
                 entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
             }
 

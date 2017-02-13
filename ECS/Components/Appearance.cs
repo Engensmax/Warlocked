@@ -11,15 +11,18 @@ namespace Warlocked
     class Appearance : ComponentPoolable
     {
         public Image image;
+        public Dictionary<string, int> animationsMap; // MAX: All animations run through the SpriteSheetEffect. The int defines the row while it cycles through the columns.
 
         public Appearance()
         {
+            animationsMap = new Dictionary<string, int>();
         }
 
         public void Initialize(string xmlPath)
         {
             this.image = new XmlManager<Image>().Load(xmlPath);
             this.image.LoadContent();
+
         }
 
         public void Cleanup()

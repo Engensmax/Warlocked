@@ -10,9 +10,6 @@ namespace Warlocked
 {
     class RandomManager
     {
-        KeyboardState currentKeyState, prevKeyState;
-        GamePadState currentGamePadState, prevGamePadState;
-
         private static RandomManager instance;
         private Random random;
 

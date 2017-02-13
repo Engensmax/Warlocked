@@ -15,8 +15,6 @@ namespace Warlocked
     {
         
         Dictionary<string, Image> images;
-        private Vector2 hudPosition;
-        private Vector2 hudScale;
         private static HUDManager instance;
 
         public static HUDManager Instance

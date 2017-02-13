@@ -24,6 +24,7 @@ namespace Warlocked
             entity.AddComponentFromPool<Damage>();
             entity.AddComponentFromPool<Position>();
             entity.AddComponentFromPool<Velocity>();
+            entity.AddComponentFromPool<Collision>();
             entity.AddComponentFromPool<Appearance>();
 
             entity.Refresh();
