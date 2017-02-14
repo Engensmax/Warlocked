@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ECS\Components\Pickupable.cs" />
     <Compile Include="ECS\Components\Collideable.cs" />
     <Compile Include="ECS\Components\Input.cs" />
     <Compile Include="ECS\Components\Spells.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="ECS\EntityTemplates\ManaCrystalTemplate.cs" />
     <Compile Include="ECS\EntityTemplates\MonsterTemplate.cs" />
     <Compile Include="ECS\EntityTemplates\PlayerTemplate.cs" />
+    <Compile Include="ECS\Systems\PickupSystem.cs" />
     <Compile Include="ECS\Systems\DrawSystem.cs" />
     <Compile Include="ECS\Systems\ManaCrystalSpawnSystem.cs" />
     <Compile Include="ECS\Systems\InputSystem.cs" />

@@ -21,6 +21,7 @@ namespace Warlocked
         public Entity BuildEntity(Entity entity, EntityWorld entityWorld, params object[] args)
         {
             entity.AddComponentFromPool<Position>();
+            entity.AddComponentFromPool<Pickupable>();
             entity.AddComponentFromPool<Appearance>();
 
             entity.Refresh();
