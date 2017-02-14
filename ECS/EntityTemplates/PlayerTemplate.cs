@@ -52,9 +52,17 @@ namespace Warlocked
             entity.GetComponent<Appearance>().animationsMap.Add("AttackDown", 10);
             entity.GetComponent<Appearance>().animationsMap.Add("AttackRight", 11);
 
+            entity.GetComponent<Appearance>().animationsMap.Add("Spawn", 2);
             entity.GetComponent<Appearance>().animationsMap.Add("Die", 16);
+
+            entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
+                entity.GetComponent<Appearance>().animationsMap["Spawn"];
+            entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
+            entity.GetComponent<Appearance>().image.spriteSheetEffect.isContinuous = false;
+            entity.GetComponent<Appearance>().image.isActive = true;
+
             entity.Refresh();
-            
+                        
             return entity;
         }
     }

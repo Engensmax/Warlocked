@@ -1,4 +1,5 @@
 ﻿using Artemis;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace Warlocked
 {
-    abstract class SummoningSpell : ISpell
+    abstract class SummoningSpell : Spell
     {
-        public abstract void Cast();
-        public abstract void Cast(Entity entity);
+
+        public override void Cast(Entity entity)
+        { }
     }
 }

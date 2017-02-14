@@ -11,18 +11,19 @@ namespace Warlocked
     public class FireBallSpell : EffectSpell
     {
         private static readonly ILog LOGGER = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
-        private static readonly int manaCost = 1;
 
-        public override void Cast()
+        public FireBallSpell()
         {
+            this.manaCost = 2;
+            this.castTime = 400; // in milliseconds
+            this.coolDown = 5000;  // in milliseconds
         }
 
         public override void Cast(Entity entity)
         {
-            LOGGER.Debug("FireBallSpell is cast.");
+            LOGGER.Debug("FireBall");
             entity.GetComponent<Health>().currentHealth -= 1;
-            entity.GetComponent<Mana>().currentMana -= manaCost;
+            entity.GetComponent<Mana>().currentMana -= this.manaCost;
         }
 
     }

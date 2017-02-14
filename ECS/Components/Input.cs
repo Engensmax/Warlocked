@@ -24,6 +24,7 @@ namespace Warlocked
             Attack
         }
 
+        public bool isActive = true;
         public Dictionary<Action, Keys> actionKeysMap;
 
         public void Initialize(int playerNumber)

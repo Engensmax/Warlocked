@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Warlocked
 {
+    // This is used to Load Dictionaries via Xml (f.e. see Content/Load/HUD.xml)
     public class Dictionary
     {
         [XmlElement("item")]
