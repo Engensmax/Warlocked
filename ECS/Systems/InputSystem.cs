@@ -36,7 +36,6 @@ namespace Warlocked
                 if (!entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive)
                 {
                     entity.GetComponent<Spells>().isCasting = false;
-                    entity.GetComponent<Spells>().spells[0].Cast(entity);
                     entity.GetComponent<Input>().isActive = true;
                 }  
             }
@@ -49,21 +48,27 @@ namespace Warlocked
             if (InputManager.Instance.KeyPressed(entity.GetComponent<Input>().
                             actionKeysMap[Input.Action.SpellButton1]))
             {
-                entity.GetComponent<Input>().isActive = false;
-                entity.GetComponent<Spells>().isCasting = true;
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.X = 0;
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
-                entity.GetComponent<Appearance>().animationsMap["CastDown"];
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.switchFrame = 
-                    entity.GetComponent<Spells>().spells[0].castTime / 
-                    entity.GetComponent<Appearance>().image.spriteSheetEffect.amountOfFramesPerLine[
-                        (int)entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y];
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.isContinuous = false;
-                entity.GetComponent<Velocity>().velocity.X = 0;
-                entity.GetComponent<Velocity>().velocity.Y = 0;
+                if (entity.GetComponent<Spells>().spells[0].manaCost <= entity.GetComponent<Mana>().currentMana)
+                {
+                    entity.GetComponent<Input>().isActive = false;
+                    entity.GetComponent<Spells>().isCasting = true;
+                    entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.X = 0;
+                    entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
+                    entity.GetComponent<Appearance>().animationsMap["CastDown"];
+                    entity.GetComponent<Appearance>().image.spriteSheetEffect.switchFrame =
+                        entity.GetComponent<Spells>().spells[0].castTime /
+                        entity.GetComponent<Appearance>().image.spriteSheetEffect.amountOfFramesPerLine[
+                            (int)entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y];
+                    entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
+                    entity.GetComponent<Appearance>().image.spriteSheetEffect.isContinuous = false;
+                    entity.GetComponent<Velocity>().velocity.X = 0;
+                    entity.GetComponent<Velocity>().velocity.Y = 0;
+                    entity.GetComponent<Spells>().spells[0].Cast(entity, entityWorld);
+                }
             }
-                
+
+
+
         }
 
         private static void HandleMovement(Entity entity)

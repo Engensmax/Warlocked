@@ -38,21 +38,50 @@ namespace Warlocked
         {
             foreach (int i in entities.Keys)
             {
-                for (int j = i+1; j < entities.Count(); j++)
+                for (int j = i+1; j < entities.Keys.Count(); j++)
                 {
-                    if (CollisionExists(entities[i], entities[j]))
+                    var distance = entities[i].GetComponent<Position>().position - entities[j].GetComponent<Position>().position;
+                    if (distance.Length()<= entities[i].GetComponent<Collision>().radius + entities[j].GetComponent<Collision>().radius)
                     {
-                        LOGGER.Info("Collision!!");
-                        LOGGER.Debug("Collision!!");
+                        if (Math.Abs(distance.X) > Math.Abs(distance.Y))
+                        {
+                            if (Math.Sign(distance.X) > 0)
+                            {
+                                if (entities[i].GetComponent<Velocity>().velocity.X < 0)
+                                    entities[i].GetComponent<Velocity>().velocity.X = 0;
+                                if (entities[j].GetComponent<Velocity>().velocity.X > 0)
+                                    entities[j].GetComponent<Velocity>().velocity.X = 0;
+                            }
+                            else
+                            {
+                                if (entities[i].GetComponent<Velocity>().velocity.X > 0)
+                                    entities[i].GetComponent<Velocity>().velocity.X = 0;
+                                if (entities[j].GetComponent<Velocity>().velocity.X < 0)
+                                    entities[j].GetComponent<Velocity>().velocity.X = 0;
+                            }
+                        }
+                        else
+                        {
+                            if (Math.Sign(distance.Y) > 0)
+                            {
+                                if (entities[i].GetComponent<Velocity>().velocity.Y < 0)
+                                    entities[i].GetComponent<Velocity>().velocity.Y = 0;
+                                if (entities[j].GetComponent<Velocity>().velocity.Y > 0)
+                                    entities[j].GetComponent<Velocity>().velocity.Y = 0;
+                            }
+                            else
+                            {
+                                if (entities[i].GetComponent<Velocity>().velocity.Y > 0)
+                                    entities[i].GetComponent<Velocity>().velocity.Y = 0;
+                                if (entities[j].GetComponent<Velocity>().velocity.Y < 0)
+                                    entities[j].GetComponent<Velocity>().velocity.Y = 0;
+                            }
+                        }
                     }
                 }                       
             }
         }
 
-        private bool CollisionExists(Entity entity1, Entity entity2)
-        {
-            return (Vector2.Distance(entity1.GetComponent<Position>().position, entity2.GetComponent<Position>().position) <= entity1.GetComponent<Collision>().radius + entity2.GetComponent<Collision>().radius);
-        }
 
     }
 }

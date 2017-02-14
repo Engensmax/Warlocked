@@ -15,7 +15,6 @@ namespace Warlocked
         public int castTime; // in milliseconds
         public int coolDown;  // in milliseconds
 
-
-        public virtual void Cast(Entity entity) { }
+        public abstract void Cast(Entity entity, EntityWorld entityWorld);
     }
 }

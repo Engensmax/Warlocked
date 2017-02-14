@@ -20,6 +20,8 @@ namespace Warlocked
         public Entity BuildEntity(Entity entity, EntityWorld entityWorld, params object[] args)
         {
             entity.AddComponentFromPool<Health>();
+            entity.GetComponent<Health>().maxHealth = 20;
+            entity.GetComponent<Health>().currentHealth = 20;
             entity.AddComponentFromPool<Mana>();
             entity.AddComponentFromPool<Spells>();
             entity.AddComponentFromPool<Position>();
@@ -28,7 +30,7 @@ namespace Warlocked
             entity.AddComponentFromPool<Input>();
             entity.AddComponentFromPool<Appearance>();
 
-            entity.GetComponent<Spells>().spells.Add(new FireBallSpell());
+            entity.GetComponent<Spells>().spells.Add(new SummonDinoGoblinSpell());
 
 
             entity.AddComponentFromPool<Velocity>().moveSpeed = 3;

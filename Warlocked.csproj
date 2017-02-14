@@ -67,6 +67,7 @@
     <Compile Include="Spell\FireBallSpell.cs" />
     <Compile Include="Spell\Spell.cs" />
     <Compile Include="Spell\EffectSpell.cs" />
+    <Compile Include="Spell\SummonDinoGoblinSpell.cs" />
     <Compile Include="Spell\SummoningSpell.cs" />
     <Compile Include="Warlocked.cs" />
     <Compile Include="Image\BlinkEffect.cs" />
@@ -103,6 +104,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
     <Content Include="Content\Xml\HUD.xml" />
+    <Content Include="Content\Xml\Images\DinoGoblin.xml" />
     <Content Include="Content\Xml\Images\FireCaster.xml" />
     <Content Include="Content\Xml\Images\ManaCrystal.xml" />
     <Content Include="Content\Xml\LoadingScreen.xml" />

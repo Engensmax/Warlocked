@@ -13,7 +13,6 @@ namespace Warlocked
 
         public Health()
         {
-            this.maxHealth = 1;
             this.currentHealth = 1;
             this.regenRate = 0;
         }

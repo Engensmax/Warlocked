@@ -10,8 +10,6 @@ namespace Warlocked
 {
     abstract class SummoningSpell : Spell
     {
-
-        public override void Cast(Entity entity)
-        { }
+        public override void Cast(Entity caster, EntityWorld entityWorld) { }
     }
 }

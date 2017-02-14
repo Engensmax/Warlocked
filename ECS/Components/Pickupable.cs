@@ -11,12 +11,14 @@ namespace Warlocked
     class Pickupable : ComponentPoolable
     {
         public int radius;
-        public int value;
+        public float maxValue;
+        public float currentValue;
 
         public Pickupable()
         {
             this.radius = 20;
-            this.value = 1;
+            this.maxValue = 1;
+            this.currentValue = 1;
         }
         //obligatory for poolable Components
         public void Cleanup()

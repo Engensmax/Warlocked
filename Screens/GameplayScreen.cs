@@ -25,7 +25,7 @@ namespace Warlocked
 
         private EntityWorld world;
         private Entity player1, player2;
-        
+
 
         public GameplayScreen()
         {
@@ -38,8 +38,8 @@ namespace Warlocked
             player2 = world.CreateEntityFromTemplate(PlayerTemplate.Name);
             player1.GetComponent<Input>().Initialize(1);
             player2.GetComponent<Input>().Initialize(2);
-            player1.GetComponent<Position>().position = new Vector2(200, 208);
-            player2.GetComponent<Position>().position = new Vector2(600, 208);
+            player1.GetComponent<Position>().position = new Vector2(200-32, 208-32);
+            player2.GetComponent<Position>().position = new Vector2(600-32, 208-32);
 
         }
 
@@ -68,7 +68,7 @@ namespace Warlocked
 
         public override void Draw()
         {
-            HUDManager.Instance.Draw(new List<Entity>());
+            HUDManager.Instance.Draw( player1, player2 );
             world.Draw();
             base.Draw();
         }

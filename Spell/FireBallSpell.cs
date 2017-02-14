@@ -19,11 +19,11 @@ namespace Warlocked
             this.coolDown = 5000;  // in milliseconds
         }
 
-        public override void Cast(Entity entity)
+        public override void Cast(Entity caster, EntityWorld entityWorld)
         {
             LOGGER.Debug("FireBall");
-            entity.GetComponent<Health>().currentHealth -= 1;
-            entity.GetComponent<Mana>().currentMana -= this.manaCost;
+            caster.GetComponent<Health>().currentHealth -= 1;
+            caster.GetComponent<Mana>().currentMana -= this.manaCost;
         }
 
     }

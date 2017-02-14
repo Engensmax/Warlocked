@@ -11,7 +11,7 @@ namespace Warlocked
     public abstract class EffectSpell : Spell
     {
 
-        public override void Cast(Entity entity)
+        public override void Cast(Entity caster, EntityWorld entityWorld)
         { }
     }
 }

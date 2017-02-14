@@ -11,6 +11,20 @@
     </Value>
   </item>
   <item>
+    <Key>HealthBarFilling1</Key>
+    <Value>
+      <path>HealthBarFilling</path>
+      <position>
+        <X>1</X>
+        <Y>418</Y>
+      </position>
+      <scale>
+        <X>188</X>
+        <Y>1</Y>
+      </scale>
+    </Value>
+  </item>
+  <item>
     <Key>ManaBar1</Key>
     <Value>
       <path>Bar</path>
@@ -18,6 +32,20 @@
         <X>0</X>
         <Y>448</Y>
       </position>
+    </Value>
+  </item>
+  <item>
+    <Key>ManaBarFilling1</Key>
+    <Value>
+      <path>ManaBarFilling</path>
+      <position>
+        <X>1</X>
+        <Y>450</Y>
+      </position>
+      <scale>
+        <X>188</X>
+        <Y>1</Y>
+      </scale>
     </Value>
   </item>
   <item>
@@ -31,6 +59,20 @@
     </Value>
   </item>
   <item>
+    <Key>HealthBarFilling2</Key>
+    <Value>
+      <path>HealthBarFilling</path>
+      <position>
+        <X>611</X>
+        <Y>418</Y>
+      </position>
+      <scale>
+        <X>188</X>
+        <Y>1</Y>
+      </scale>
+    </Value>
+  </item>
+  <item>
     <Key>ManaBar2</Key>
     <Value>
       <path>Bar</path>
@@ -38,6 +80,20 @@
         <X>610</X>
         <Y>448</Y>
       </position>
+    </Value>
+  </item>
+  <item>
+    <Key>ManaBarFilling2</Key>
+    <Value>
+      <path>ManaBarFilling</path>
+      <position>
+        <X>611</X>
+        <Y>450</Y>
+      </position>
+      <scale>
+        <X>188</X>
+        <Y>1</Y>
+      </scale>
     </Value>
   </item>
   <item>

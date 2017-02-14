@@ -39,9 +39,13 @@ namespace Warlocked
                         {
                             if (CollisionExists(entities[i], entities[j]))
                             {
-                                LOGGER.Debug("Pickup");
-                                entities[i].GetComponent<Mana>().maxMana += entities[j].GetComponent<Pickupable>().value;
+                                if (entities[i].GetComponent<Mana>().maxMana < 10)
+                                    entities[i].GetComponent<Mana>().maxMana += entities[j].GetComponent<Pickupable>().maxValue;
+                                entities[i].GetComponent<Mana>().currentMana += entities[j].GetComponent<Pickupable>().currentValue;
                                 entities[j].Delete();
+                                LOGGER.Info("Pickup, MaxMana: " + entities[i].GetComponent<Mana>().maxMana);
+
+
                             }
                         }
                     }

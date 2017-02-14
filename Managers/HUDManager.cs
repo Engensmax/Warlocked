@@ -54,8 +54,14 @@ namespace Warlocked
             }
         }
 
-        public void Draw(List<Entity> players)
+        public void Draw(Entity player1, Entity player2)
         {
+            images["HealthBarFilling1"].scale.X = 188 * player1.GetComponent<Health>().currentHealth / 20;
+            images["HealthBarFilling2"].scale.X = 188 * player2.GetComponent<Health>().currentHealth / 20;
+
+            images["ManaBarFilling1"].scale.X = 188 * player1.GetComponent<Mana>().currentMana / 10;
+            images["ManaBarFilling2"].scale.X = 188 * player2.GetComponent<Mana>().currentMana / 10;
+
             foreach (Image image in this.images.Values)
             {
                 image.Draw();

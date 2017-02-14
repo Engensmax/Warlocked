@@ -22,6 +22,8 @@ namespace Warlocked
         {
             entity.AddComponentFromPool<Position>();
             entity.AddComponentFromPool<Pickupable>();
+            entity.GetComponent<Pickupable>().currentValue = 0.2f;
+            entity.GetComponent<Pickupable>().maxValue = 0;
             entity.AddComponentFromPool<Appearance>();
 
             entity.Refresh();
