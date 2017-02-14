@@ -20,7 +20,7 @@ namespace Warlocked
     {
 
         private static readonly ILog LOGGER = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
+        private List<int> collisionList = new List<int>();
 
         public CollisionSystem()
             : base(Aspect.All(typeof(Position), typeof(Collision)))
@@ -38,43 +38,46 @@ namespace Warlocked
         {
             foreach (int i in entities.Keys)
             {
-                for (int j = i+1; j < entities.Keys.Count(); j++)
+                foreach (int j in entities.Keys)
                 {
-                    var distance = entities[i].GetComponent<Position>().position - entities[j].GetComponent<Position>().position;
-                    if (distance.Length()<= entities[i].GetComponent<Collision>().radius + entities[j].GetComponent<Collision>().radius)
+                    if (j > i)
                     {
-                        if (Math.Abs(distance.X) > Math.Abs(distance.Y))
+                        var distance = entities[i].GetComponent<Position>().position - entities[j].GetComponent<Position>().position;
+                        if (distance.Length() <= entities[i].GetComponent<Collision>().radius + entities[j].GetComponent<Collision>().radius)
                         {
-                            if (Math.Sign(distance.X) > 0)
+                            if (Math.Abs(distance.X) > Math.Abs(distance.Y))
                             {
-                                if (entities[i].GetComponent<Velocity>().velocity.X < 0)
-                                    entities[i].GetComponent<Velocity>().velocity.X = 0;
-                                if (entities[j].GetComponent<Velocity>().velocity.X > 0)
-                                    entities[j].GetComponent<Velocity>().velocity.X = 0;
+                                if (Math.Sign(distance.X) > 0)
+                                {
+                                    if (entities[i].GetComponent<Velocity>().velocity.X < 0)
+                                        entities[i].GetComponent<Velocity>().velocity.X = 0;
+                                    if (entities[j].GetComponent<Velocity>().velocity.X > 0)
+                                        entities[j].GetComponent<Velocity>().velocity.X = 0;
+                                }
+                                else
+                                {
+                                    if (entities[i].GetComponent<Velocity>().velocity.X > 0)
+                                        entities[i].GetComponent<Velocity>().velocity.X = 0;
+                                    if (entities[j].GetComponent<Velocity>().velocity.X < 0)
+                                        entities[j].GetComponent<Velocity>().velocity.X = 0;
+                                }
                             }
                             else
                             {
-                                if (entities[i].GetComponent<Velocity>().velocity.X > 0)
-                                    entities[i].GetComponent<Velocity>().velocity.X = 0;
-                                if (entities[j].GetComponent<Velocity>().velocity.X < 0)
-                                    entities[j].GetComponent<Velocity>().velocity.X = 0;
-                            }
-                        }
-                        else
-                        {
-                            if (Math.Sign(distance.Y) > 0)
-                            {
-                                if (entities[i].GetComponent<Velocity>().velocity.Y < 0)
-                                    entities[i].GetComponent<Velocity>().velocity.Y = 0;
-                                if (entities[j].GetComponent<Velocity>().velocity.Y > 0)
-                                    entities[j].GetComponent<Velocity>().velocity.Y = 0;
-                            }
-                            else
-                            {
-                                if (entities[i].GetComponent<Velocity>().velocity.Y > 0)
-                                    entities[i].GetComponent<Velocity>().velocity.Y = 0;
-                                if (entities[j].GetComponent<Velocity>().velocity.Y < 0)
-                                    entities[j].GetComponent<Velocity>().velocity.Y = 0;
+                                if (Math.Sign(distance.Y) > 0)
+                                {
+                                    if (entities[i].GetComponent<Velocity>().velocity.Y < 0)
+                                        entities[i].GetComponent<Velocity>().velocity.Y = 0;
+                                    if (entities[j].GetComponent<Velocity>().velocity.Y > 0)
+                                        entities[j].GetComponent<Velocity>().velocity.Y = 0;
+                                }
+                                else
+                                {
+                                    if (entities[i].GetComponent<Velocity>().velocity.Y > 0)
+                                        entities[i].GetComponent<Velocity>().velocity.Y = 0;
+                                    if (entities[j].GetComponent<Velocity>().velocity.Y < 0)
+                                        entities[j].GetComponent<Velocity>().velocity.Y = 0;
+                                }
                             }
                         }
                     }
