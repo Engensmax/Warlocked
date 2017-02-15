@@ -28,10 +28,13 @@ namespace Warlocked
             goblin.GetComponent<Damage>().damage = 1;
 
             goblin.GetComponent<Position>().position = caster.GetComponent<Position>().position;
+            goblin.GetComponent<SpawnPoint>().position = goblin.GetComponent<Position>().position;
+            goblin.GetComponent<SpawnPoint>().image.position = goblin.GetComponent<Position>().position;
+
             goblin.GetComponent<Appearance>().Initialize("Images/DinoGoblin.xml");
             goblin.GetComponent<Appearance>().image.isActive = true;
             goblin.GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
-
+            goblin.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y = 0;
 
             goblin.GetComponent<Velocity>().moveSpeed = 3;
 

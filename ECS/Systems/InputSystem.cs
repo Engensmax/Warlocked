@@ -50,6 +50,7 @@ namespace Warlocked
             {
                 if (entity.GetComponent<Spells>().spells[0].manaCost <= entity.GetComponent<Mana>().currentMana)
                 {
+                    entity.GetComponent<Mana>().currentMana -= entity.GetComponent<Spells>().spells[0].manaCost;
                     entity.GetComponent<Input>().isActive = false;
                     entity.GetComponent<Spells>().isCasting = true;
                     entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.X = 0;

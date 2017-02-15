@@ -14,10 +14,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Warlocked
 {
-    [ArtemisEntitySystem(GameLoopType = GameLoopType.Draw, Layer = 3)]
-    internal class DrawSystem : EntityProcessingSystem
+    [ArtemisEntitySystem(GameLoopType = GameLoopType.Draw, Layer = 1)]
+    internal class DrawAppearanceSystem : EntityProcessingSystem
     {
-        public DrawSystem()
+        public DrawAppearanceSystem()
             : base(Aspect.All(typeof(Appearance)))
         {
         }
@@ -25,8 +25,9 @@ namespace Warlocked
         public override void Process(Entity entity)
         {
             AdjustImagePosition(entity);
-            
+
             entity.GetComponent<Appearance>().image.Draw();
+
 
         }
 

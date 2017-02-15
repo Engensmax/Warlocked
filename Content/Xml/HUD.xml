@@ -1,6 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Dictionary>
   <item>
+    <Key>HealthBarFilling1</Key>
+    <Value>
+      <path>HealthBarFilling</path>
+      <position>
+        <X>1</X>
+        <Y>418</Y>
+      </position>
+      <scale>
+        <X>188</X>
+        <Y>1</Y>
+      </scale>
+    </Value>
+  </item>
+  <item>
     <Key>HealthBar1</Key>
     <Value>
       <path>Bar</path>
@@ -11,12 +25,27 @@
     </Value>
   </item>
   <item>
-    <Key>HealthBarFilling1</Key>
+    <Key>MaxManaBarFilling1</Key>
     <Value>
-      <path>HealthBarFilling</path>
+      <path>ManaBarFilling</path>
+      <alpha>0.5</alpha>
       <position>
         <X>1</X>
-        <Y>418</Y>
+        <Y>450</Y>
+      </position>
+      <scale>
+        <X>188</X>
+        <Y>1</Y>
+      </scale>
+    </Value>
+  </item>
+  <item>
+    <Key>ManaBarFilling1</Key>
+    <Value>
+      <path>ManaBarFilling</path>
+      <position>
+        <X>1</X>
+        <Y>450</Y>
       </position>
       <scale>
         <X>188</X>
@@ -35,12 +64,12 @@
     </Value>
   </item>
   <item>
-    <Key>ManaBarFilling1</Key>
+    <Key>HealthBarFilling2</Key>
     <Value>
-      <path>ManaBarFilling</path>
+      <path>HealthBarFilling</path>
       <position>
-        <X>1</X>
-        <Y>450</Y>
+        <X>611</X>
+        <Y>418</Y>
       </position>
       <scale>
         <X>188</X>
@@ -59,12 +88,27 @@
     </Value>
   </item>
   <item>
-    <Key>HealthBarFilling2</Key>
+    <Key>MaxManaBarFilling2</Key>
     <Value>
-      <path>HealthBarFilling</path>
+      <path>ManaBarFilling</path>
+      <alpha>0.5</alpha>
       <position>
         <X>611</X>
-        <Y>418</Y>
+        <Y>450</Y>
+      </position>
+      <scale>
+        <X>188</X>
+        <Y>1</Y>
+      </scale>
+    </Value>
+  </item>
+  <item>
+    <Key>ManaBarFilling2</Key>
+    <Value>
+      <path>ManaBarFilling</path>
+      <position>
+        <X>611</X>
+        <Y>450</Y>
       </position>
       <scale>
         <X>188</X>
@@ -80,20 +124,6 @@
         <X>610</X>
         <Y>448</Y>
       </position>
-    </Value>
-  </item>
-  <item>
-    <Key>ManaBarFilling2</Key>
-    <Value>
-      <path>ManaBarFilling</path>
-      <position>
-        <X>611</X>
-        <Y>450</Y>
-      </position>
-      <scale>
-        <X>188</X>
-        <Y>1</Y>
-      </scale>
     </Value>
   </item>
   <item>

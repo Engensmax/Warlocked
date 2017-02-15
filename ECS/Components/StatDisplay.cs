@@ -4,21 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Artemis;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 namespace Warlocked
 {
     [Artemis.Attributes.ArtemisComponentPool()]
-    class Mana : ComponentPoolable
+    class StatsDisplay : ComponentPoolable
     {
-        public float maxMana;
-        public float currentMana;
-        public float regenRate;
+        public string stats, font;
+        public Vector2 position;
 
-        public Mana()
+        public StatsDisplay()
         {
-            this.maxMana = 0;
-            this.currentMana = 0;
-            this.regenRate = 0.15f; // Mana per second
+            this.font = "StatsFont";
         }
+        
         //obligatory for poolable Components
         public void Cleanup()
         {

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Image>
-  <path>DinoGoblin</path>
+  <path>DinoGoblin2</path>
   <isVisible>true</isVisible>
   <effects>SpriteSheetEffect</effects>
   <spriteSheetEffect>
@@ -8,9 +8,9 @@
       <X>0</X>
       <Y>0</Y>
     </currentFrame>
-    <item>3</item>
-    <item>3</item>
-    <item>3</item>
+    <item>8</item>
+    <item>8</item>
+    <item>8</item>
     <item>8</item>
     <isContinuous>true</isContinuous>
   </spriteSheetEffect>

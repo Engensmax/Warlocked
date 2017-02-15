@@ -25,6 +25,9 @@ namespace Warlocked
         public override void Process(Entity entity)
         {
             entity.GetComponent<Appearance>().image.Update(EntitySystem.BlackBoard.GetEntry<GameTime>("GameTime"));
+            //if (entity.HasComponent<SpawnPoint>())  // SpawnPoint has no effects yet, so it doesn't need an update
+            //    entity.GetComponent<SpawnPoint>().image.Update(EntitySystem.BlackBoard.GetEntry<GameTime>("GameTime"));
+
         }
 
     }

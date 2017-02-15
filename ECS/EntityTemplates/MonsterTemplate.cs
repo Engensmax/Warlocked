@@ -26,6 +26,8 @@ namespace Warlocked
             entity.AddComponentFromPool<Velocity>();
             entity.AddComponentFromPool<Collision>();
             entity.AddComponentFromPool<Appearance>();
+            entity.AddComponentFromPool<SpawnPoint>();
+            entity.AddComponentFromPool<StatsDisplay>();
 
             entity.Refresh();
             

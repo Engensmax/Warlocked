@@ -23,7 +23,6 @@ namespace Warlocked
         {
             LOGGER.Debug("FireBall");
             caster.GetComponent<Health>().currentHealth -= 1;
-            caster.GetComponent<Mana>().currentMana -= this.manaCost;
         }
 
     }

@@ -38,6 +38,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ECS\Components\StatDisplay.cs" />
+    <Compile Include="ECS\Components\SpawnPoint.cs" />
     <Compile Include="ECS\Components\Pickupable.cs" />
     <Compile Include="ECS\Components\Collideable.cs" />
     <Compile Include="ECS\Components\Input.cs" />
@@ -52,8 +54,10 @@
     <Compile Include="ECS\EntityTemplates\ManaCrystalTemplate.cs" />
     <Compile Include="ECS\EntityTemplates\MonsterTemplate.cs" />
     <Compile Include="ECS\EntityTemplates\PlayerTemplate.cs" />
+    <Compile Include="ECS\Systems\StatDisplaySystem.cs" />
+    <Compile Include="ECS\Systems\SpawnPointSystem.cs" />
     <Compile Include="ECS\Systems\PickupSystem.cs" />
-    <Compile Include="ECS\Systems\DrawSystem.cs" />
+    <Compile Include="ECS\Systems\DrawAppearanceSystem.cs" />
     <Compile Include="ECS\Systems\ManaCrystalSpawnSystem.cs" />
     <Compile Include="ECS\Systems\InputSystem.cs" />
     <Compile Include="ECS\Systems\CollisionSystem.cs" />
@@ -106,6 +110,7 @@
     <Content Include="Content\Xml\HUD.xml" />
     <Content Include="Content\Xml\Images\DinoGoblin.xml" />
     <Content Include="Content\Xml\Images\FireCaster.xml" />
+    <Content Include="Content\Xml\Images\SpawnPoint.xml" />
     <Content Include="Content\Xml\Images\ManaCrystal.xml" />
     <Content Include="Content\Xml\LoadingScreen.xml" />
     <Content Include="Content\Xml\Menus\Options.xml" />
