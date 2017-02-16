@@ -10,8 +10,11 @@ namespace Warlocked
 {
     public abstract class EffectSpell : Spell
     {
-
-        public override void Cast(Entity caster, EntityWorld entity)
+        protected EffectSpell(int coolDown) : base(coolDown)
         { }
+        public override void Cast(Entity caster, EntityWorld entityWorld)
+        {
+            base.Cast(caster, entityWorld);
+        }
     }
 }

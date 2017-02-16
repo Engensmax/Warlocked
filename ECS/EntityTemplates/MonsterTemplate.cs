@@ -22,12 +22,15 @@ namespace Warlocked
         {
             entity.AddComponentFromPool<Health>();
             entity.AddComponentFromPool<Damage>();
+            entity.AddComponentFromPool<Team>();
             entity.AddComponentFromPool<Position>();
             entity.AddComponentFromPool<Velocity>();
             entity.AddComponentFromPool<Collision>();
             entity.AddComponentFromPool<Appearance>();
             entity.AddComponentFromPool<SpawnPoint>();
             entity.AddComponentFromPool<StatsDisplay>();
+            entity.AddComponentFromPool<AI>();
+
 
             entity.Refresh();
             

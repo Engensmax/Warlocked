@@ -34,10 +34,12 @@ namespace Warlocked
 
             this.world.InitializeAll(true);
 
-            player1 = world.CreateEntityFromTemplate(PlayerTemplate.Name);
-            player2 = world.CreateEntityFromTemplate(PlayerTemplate.Name);
+            player1 = world.CreateEntityFromTemplate(PlayerTemplate.Name); // unique id should be 0
+            player2 = world.CreateEntityFromTemplate(PlayerTemplate.Name); // unique id should be 1
             player1.GetComponent<Input>().Initialize(1);
             player2.GetComponent<Input>().Initialize(2);
+            player1.GetComponent<Team>().team= player1.Id;
+            player1.GetComponent<Team>().team= player2.Id;
             player1.GetComponent<Position>().position = new Vector2(200-32, 208-32);
             player2.GetComponent<Position>().position = new Vector2(600-32, 208-32);
 

@@ -20,7 +20,6 @@ namespace Warlocked
     {
 
         private static readonly ILog LOGGER = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        private List<int> collisionList = new List<int>();
 
         public CollisionSystem()
             : base(Aspect.All(typeof(Position), typeof(Collision)))

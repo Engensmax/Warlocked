@@ -12,7 +12,7 @@ namespace Warlocked
     {
         private static readonly ILog LOGGER = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public FireBallSpell()
+        public FireBallSpell() : base(2000)
         {
             this.manaCost = 2;
             this.castTime = 400; // in milliseconds
@@ -23,6 +23,8 @@ namespace Warlocked
         {
             LOGGER.Debug("FireBall");
             caster.GetComponent<Health>().currentHealth -= 1;
+
+            base.Cast(caster, entityWorld);
         }
 
     }

@@ -30,17 +30,58 @@ namespace Warlocked
             if (entity.GetComponent<Input>().isActive)
                 HandleCasting(entity);
             if (entity.GetComponent<Input>().isActive)
+                HandleAttacking(entity);
+            if (entity.GetComponent<Input>().isActive)
                 HandleMovement(entity);
-            if (entity.GetComponent<Spells>().isCasting)
+
+                if (entity.GetComponent<Spells>().isCasting)
             {
                 if (!entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive)
                 {
+                    entity.GetComponent<Spells>().spells[0].Cast(entity, entityWorld);
                     entity.GetComponent<Spells>().isCasting = false;
                     entity.GetComponent<Input>().isActive = true;
                 }  
             }
+                if (entity.GetComponent<Damage>().isAttacking)
+            {
+                if (!entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive)
+                {
+                    entity.GetComponent<Damage>().isAttacking = false;
 
+                    entity.GetComponent<Damage>().isHitting = true;
 
+                    entity.GetComponent<Input>().isActive = true;
+                }
+            }
+
+        }
+
+        private void HandleAttacking(Entity entity)
+        {
+            if (InputManager.Instance.KeyPressed(entity.GetComponent<Input>().
+                           actionKeysMap[Input.Action.Attack]))
+            {
+                entity.GetComponent<Input>().isActive = false;
+                entity.GetComponent<Damage>().isAttacking = true;
+
+                entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.X = 0;
+                if (entity.Id == 0)
+                    entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
+                    entity.GetComponent<Appearance>().animationsMap["AttackRight"];
+                if (entity.Id == 1)
+                    entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
+                    entity.GetComponent<Appearance>().animationsMap["AttackLeft"];
+                entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
+                entity.GetComponent<Appearance>().image.spriteSheetEffect.isContinuous = false;
+                entity.GetComponent<Velocity>().velocity.X = 0;
+                entity.GetComponent<Velocity>().velocity.Y = 0;
+
+                entity.GetComponent<Appearance>().image.spriteSheetEffect.switchFrame =
+                        entity.GetComponent<Damage>().attackTime /
+                        entity.GetComponent<Appearance>().image.spriteSheetEffect.amountOfFramesPerLine[(int)entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y];
+
+            }
         }
 
         private void HandleCasting(Entity entity)
@@ -48,7 +89,7 @@ namespace Warlocked
             if (InputManager.Instance.KeyPressed(entity.GetComponent<Input>().
                             actionKeysMap[Input.Action.SpellButton1]))
             {
-                if (entity.GetComponent<Spells>().spells[0].manaCost <= entity.GetComponent<Mana>().currentMana)
+                if (entity.GetComponent<Spells>().spells[0].manaCost <= entity.GetComponent<Mana>().currentMana && !entity.GetComponent<Spells>().spells[0].isCoolingDown)
                 {
                     entity.GetComponent<Mana>().currentMana -= entity.GetComponent<Spells>().spells[0].manaCost;
                     entity.GetComponent<Input>().isActive = false;
@@ -64,7 +105,6 @@ namespace Warlocked
                     entity.GetComponent<Appearance>().image.spriteSheetEffect.isContinuous = false;
                     entity.GetComponent<Velocity>().velocity.X = 0;
                     entity.GetComponent<Velocity>().velocity.Y = 0;
-                    entity.GetComponent<Spells>().spells[0].Cast(entity, entityWorld);
                 }
             }
 

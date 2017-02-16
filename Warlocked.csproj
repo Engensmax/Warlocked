@@ -38,6 +38,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ECS\Components\AI.cs" />
+    <Compile Include="ECS\Components\Team.cs" />
     <Compile Include="ECS\Components\StatDisplay.cs" />
     <Compile Include="ECS\Components\SpawnPoint.cs" />
     <Compile Include="ECS\Components\Pickupable.cs" />
@@ -54,6 +56,10 @@
     <Compile Include="ECS\EntityTemplates\ManaCrystalTemplate.cs" />
     <Compile Include="ECS\EntityTemplates\MonsterTemplate.cs" />
     <Compile Include="ECS\EntityTemplates\PlayerTemplate.cs" />
+    <Compile Include="ECS\Systems\AISystem.cs" />
+    <Compile Include="ECS\Systems\DeathSystem.cs" />
+    <Compile Include="ECS\Systems\RespawnSystem.cs" />
+    <Compile Include="ECS\Systems\AttackSystem.cs" />
     <Compile Include="ECS\Systems\StatDisplaySystem.cs" />
     <Compile Include="ECS\Systems\SpawnPointSystem.cs" />
     <Compile Include="ECS\Systems\PickupSystem.cs" />
@@ -61,6 +67,7 @@
     <Compile Include="ECS\Systems\ManaCrystalSpawnSystem.cs" />
     <Compile Include="ECS\Systems\InputSystem.cs" />
     <Compile Include="ECS\Systems\CollisionSystem.cs" />
+    <Compile Include="ECS\Systems\UpdateSpellsSystem.cs" />
     <Compile Include="Managers\Dictionary.cs" />
     <Compile Include="Managers\HUDManager.cs" />
     <Compile Include="ECS\Systems\UpdateEffectsSystem.cs" />

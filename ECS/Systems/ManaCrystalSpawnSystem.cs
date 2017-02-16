@@ -21,13 +21,13 @@ namespace Warlocked
 
         public ManaCrystalSpawnSystem()
         {
-            this.manaSpawnTimer = new Timer(new TimeSpan(500));
-            this.manaSpawnTimer.IsReached(400);
+            this.manaSpawnTimer = new Timer(new TimeSpan(6000));
+            this.manaSpawnTimer.IsReached(4000);
         }
         
         public override void ProcessSystem()
         {
-            if (manaSpawnTimer.IsReached(1))
+            if (manaSpawnTimer.IsReached(EntitySystem.BlackBoard.GetEntry<GameTime>("GameTime").ElapsedGameTime.Milliseconds))
             {
                 SpawnCrystal(new List<int> { 32, 368, 32, 384 });
                 SpawnCrystal(new List<int> { 432, 768, 32, 384 });

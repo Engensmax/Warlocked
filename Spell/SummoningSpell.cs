@@ -10,9 +10,11 @@ namespace Warlocked
 {
     abstract class SummoningSpell : Spell
     {
+        protected SummoningSpell(int coolDown) : base(coolDown)
+        { }
         public override void Cast(Entity caster, EntityWorld entityWorld)
         {
-
+            base.Cast(caster, entityWorld);
         }
     }
 }

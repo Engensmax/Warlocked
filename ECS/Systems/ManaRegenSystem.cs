@@ -8,6 +8,7 @@ using Artemis.Attributes;
 using Artemis.Manager;
 using Artemis.System;
 using Artemis.Utils;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using log4net;
@@ -23,12 +24,12 @@ namespace Warlocked
         public ManaRegenSystem()
             : base(Aspect.All(typeof(Mana)))
         {
-            this.manaTimer = new Timer(new TimeSpan(8)); 
+            this.manaTimer = new Timer(new TimeSpan(250)); 
         }
         
         protected override void ProcessEntities(IDictionary<int, Entity> entities)
         {
-            if (manaTimer.IsReached(1))
+            if (manaTimer.IsReached(EntitySystem.BlackBoard.GetEntry<GameTime>("GameTime").ElapsedGameTime.Milliseconds))
             {
                 foreach (Entity entity in entities.Values)
                 {

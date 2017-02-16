@@ -16,6 +16,20 @@ namespace Warlocked
         public Appearance()
         {
             animationsMap = new Dictionary<string, int>();
+            animationsMap.Add("MoveUp", 0);
+            animationsMap.Add("MoveDown", 0);
+            animationsMap.Add("MoveLeft", 0);
+            animationsMap.Add("MoveRight", 0);
+            animationsMap.Add("AttackUp", 0);
+            animationsMap.Add("AttackDown", 0);
+            animationsMap.Add("AttackLeft", 0);
+            animationsMap.Add("AttackRight", 0);
+            animationsMap.Add("CastUp", 0);
+            animationsMap.Add("CastDown", 0);
+            animationsMap.Add("CastLeft", 0);
+            animationsMap.Add("CastRight", 0);
+            animationsMap.Add("Spawn", 0);
+            animationsMap.Add("Die", 0);
         }
 
         public void Initialize(string xmlPath)
@@ -27,6 +41,7 @@ namespace Warlocked
 
         public void Cleanup()
         {
+            this.image.UnloadContent();
         }
     }
 }

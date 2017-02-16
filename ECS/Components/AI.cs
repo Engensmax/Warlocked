@@ -4,21 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Artemis;
-using Artemis.Utils;
+using Microsoft.Xna.Framework;
 namespace Warlocked
 {
     [Artemis.Attributes.ArtemisComponentPool()]
-    class Health : ComponentPoolable
+    class AI : ComponentPoolable
     {
-        public float maxHealth, currentHealth, regenRate;
-        public Timer DeathTimer;
-
-        public Health()
+        public enum behavior
         {
-            this.DeathTimer = new Timer(new TimeSpan(300));
-            this.currentHealth = 1;
-            this.regenRate = 0;
+            Aggressive,
+            Passive,
+            Defensive
         }
+
+        public behavior ai = new behavior();
+        public int isEngagedWith = -1;
+
         //obligatory for poolable Components
         public void Cleanup()
         {

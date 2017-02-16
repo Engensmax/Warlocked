@@ -56,13 +56,16 @@ namespace Warlocked
 
         public void Draw(Entity player1, Entity player2)
         {
-            images["HealthBarFilling1"].scale.X = 188 * player1.GetComponent<Health>().currentHealth / 20;
-            images["HealthBarFilling2"].scale.X = 188 * player2.GetComponent<Health>().currentHealth / 20;
+            if (player1.IsActive && player2.IsActive) // not sure if works.
+            {
+                images["HealthBarFilling1"].scale.X = 188 * player1.GetComponent<Health>().currentHealth / 20;
+                images["HealthBarFilling2"].scale.X = 188 * player2.GetComponent<Health>().currentHealth / 20;
 
-            images["MaxManaBarFilling1"].scale.X = 188 * player1.GetComponent<Mana>().maxMana / 10;
-            images["ManaBarFilling1"].scale.X = 188 * player1.GetComponent<Mana>().currentMana / 10;
-            images["MaxManaBarFilling2"].scale.X = 188 * player2.GetComponent<Mana>().maxMana / 10;
-            images["ManaBarFilling2"].scale.X = 188 * player2.GetComponent<Mana>().currentMana / 10;
+                images["MaxManaBarFilling1"].scale.X = 188 * player1.GetComponent<Mana>().maxMana / 10;
+                images["ManaBarFilling1"].scale.X = 188 * player1.GetComponent<Mana>().currentMana / 10;
+                images["MaxManaBarFilling2"].scale.X = 188 * player2.GetComponent<Mana>().maxMana / 10;
+                images["ManaBarFilling2"].scale.X = 188 * player2.GetComponent<Mana>().currentMana / 10;
+            }
 
             foreach (Image image in this.images.Values)
             {
