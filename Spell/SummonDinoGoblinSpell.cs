@@ -28,7 +28,7 @@ namespace Warlocked
             goblin.GetComponent<Damage>().damage = 1;
 
 
-            goblin.GetComponent<AI>().ai = AI.behavior.Aggressive;
+            goblin.GetComponent<AI>().ai = AI.Behavior.Aggressive;
             goblin.GetComponent<Team>().team = caster.GetComponent<Team>().team;
 
             goblin.GetComponent<Position>().position = caster.GetComponent<Position>().position;
@@ -40,10 +40,10 @@ namespace Warlocked
             goblin.GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
             goblin.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y = 0;
 
-            goblin.GetComponent<Appearance>().animationsMap["MoveRight"] = 2;
-            goblin.GetComponent<Appearance>().animationsMap["MoveLeft"] = 0;
-            goblin.GetComponent<Appearance>().animationsMap["AttackRight"] = 3;
-            goblin.GetComponent<Appearance>().animationsMap["AttackLeft"] = 1;
+            goblin.GetComponent<Appearance>().animationsMap[Appearance.Animation.MoveRight] = 2;
+            goblin.GetComponent<Appearance>().animationsMap[Appearance.Animation.MoveLeft] = 0;
+            goblin.GetComponent<Appearance>().animationsMap[Appearance.Animation.AttackRight] = 3;
+            goblin.GetComponent<Appearance>().animationsMap[Appearance.Animation.AttackLeft] = 1;
 
 
             goblin.GetComponent<Velocity>().moveSpeed = 2;

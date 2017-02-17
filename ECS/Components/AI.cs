@@ -10,14 +10,14 @@ namespace Warlocked
     [Artemis.Attributes.ArtemisComponentPool()]
     class AI : ComponentPoolable
     {
-        public enum behavior
+        public enum Behavior
         {
             Aggressive,
             Passive,
             Defensive
         }
 
-        public behavior ai = new behavior();
+        public Behavior ai = new Behavior();
         public int isEngagedWith = -1;
 
         //obligatory for poolable Components

@@ -57,7 +57,7 @@ namespace Warlocked
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            if (this.isActive)
+            if (image.isActive)
             {
                 frameCounter += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
                 if (frameCounter >= switchFrame)
@@ -68,13 +68,8 @@ namespace Warlocked
                         currentFrame.Y = 0;
                     if (currentFrame.X >= amountOfFramesPerLine[(int)currentFrame.Y])
                     {
-                        if (isContinuous)
-                            currentFrame.X = 0;
-                        else
-                        {
-                            currentFrame.X = 0;
-                            this.isActive = false;
-                        }
+                        currentFrame.X = 0;
+                        image.isActive = isContinuous;
                     }
                 }
             }

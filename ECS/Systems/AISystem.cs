@@ -33,24 +33,24 @@ namespace Warlocked
                         entities[i].GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.X = 0;
                         if (entities[i].GetComponent<Team>().team == 0)
                             entities[i].GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
-                            entities[i].GetComponent<Appearance>().animationsMap["MoveLeft"];
+                            entities[i].GetComponent<Appearance>().animationsMap[Appearance.Animation.MoveLeft];
                         if (entities[i].GetComponent<Team>().team == 1)
                             entities[i].GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
-                            entities[i].GetComponent<Appearance>().animationsMap["MoveRight"];
+                            entities[i].GetComponent<Appearance>().animationsMap[Appearance.Animation.MoveRight];
                         entities[i].GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
                         entities[i].GetComponent<Appearance>().image.spriteSheetEffect.isContinuous = true;
 
                         switch (entities[i].GetComponent<AI>().ai)
                         {
-                            case AI.behavior.Aggressive:
+                            case AI.Behavior.Aggressive:
                                 ActAggressive(entities[i], entities);
                                 break;
 
-                            case AI.behavior.Defensive:
+                            case AI.Behavior.Defensive:
                                 ActDefensive(entities[i]);
                                 break;
 
-                            case AI.behavior.Passive:
+                            case AI.Behavior.Passive:
                                 ActPassive(entities[i]);
                                 break;
                                 //case AI.behavior.Fearful:
@@ -64,10 +64,10 @@ namespace Warlocked
                         entities[i].GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.X = 0;
                         if (entities[i].GetComponent<Team>().team == 0)
                             entities[i].GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
-                            entities[i].GetComponent<Appearance>().animationsMap["AttackRight"];
+                            entities[i].GetComponent<Appearance>().animationsMap[Appearance.Animation.AttackRight];
                         if (entities[i].GetComponent<Team>().team == 1)
                             entities[i].GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
-                            entities[i].GetComponent<Appearance>().animationsMap["AttackLeft"];
+                            entities[i].GetComponent<Appearance>().animationsMap[Appearance.Animation.AttackLeft];
                         entities[i].GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
                         entities[i].GetComponent<Appearance>().image.spriteSheetEffect.isContinuous = false;
                         entities[i].GetComponent<Velocity>().velocity.X = 0;

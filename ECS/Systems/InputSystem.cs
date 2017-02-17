@@ -36,7 +36,7 @@ namespace Warlocked
 
                 if (entity.GetComponent<Spells>().isCasting)
             {
-                if (!entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive)
+                if (!entity.GetComponent<Appearance>().image.isActive)
                 {
                     entity.GetComponent<Spells>().spells[0].Cast(entity, entityWorld);
                     entity.GetComponent<Spells>().isCasting = false;
@@ -45,7 +45,7 @@ namespace Warlocked
             }
                 if (entity.GetComponent<Damage>().isAttacking)
             {
-                if (!entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive)
+                if (!entity.GetComponent<Appearance>().image.isActive)
                 {
                     entity.GetComponent<Damage>().isAttacking = false;
 
@@ -65,22 +65,12 @@ namespace Warlocked
                 entity.GetComponent<Input>().isActive = false;
                 entity.GetComponent<Damage>().isAttacking = true;
 
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.X = 0;
                 if (entity.Id == 0)
-                    entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
-                    entity.GetComponent<Appearance>().animationsMap["AttackRight"];
+                    entity.GetComponent<Appearance>().Animate(Appearance.Animation.AttackRight, entity.GetComponent<Damage>().attackTime, false);
                 if (entity.Id == 1)
-                    entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
-                    entity.GetComponent<Appearance>().animationsMap["AttackLeft"];
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.isContinuous = false;
+                    entity.GetComponent<Appearance>().Animate(Appearance.Animation.AttackLeft, entity.GetComponent<Damage>().attackTime, false);
                 entity.GetComponent<Velocity>().velocity.X = 0;
                 entity.GetComponent<Velocity>().velocity.Y = 0;
-
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.switchFrame =
-                        entity.GetComponent<Damage>().attackTime /
-                        entity.GetComponent<Appearance>().image.spriteSheetEffect.amountOfFramesPerLine[(int)entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y];
-
             }
         }
 
@@ -94,15 +84,7 @@ namespace Warlocked
                     entity.GetComponent<Mana>().currentMana -= entity.GetComponent<Spells>().spells[0].manaCost;
                     entity.GetComponent<Input>().isActive = false;
                     entity.GetComponent<Spells>().isCasting = true;
-                    entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.X = 0;
-                    entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
-                    entity.GetComponent<Appearance>().animationsMap["CastDown"];
-                    entity.GetComponent<Appearance>().image.spriteSheetEffect.switchFrame =
-                        entity.GetComponent<Spells>().spells[0].castTime /
-                        entity.GetComponent<Appearance>().image.spriteSheetEffect.amountOfFramesPerLine[
-                            (int)entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y];
-                    entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
-                    entity.GetComponent<Appearance>().image.spriteSheetEffect.isContinuous = false;
+                    entity.GetComponent<Appearance>().Animate(Appearance.Animation.CastDown, entity.GetComponent<Spells>().spells[0].castTime, false);
                     entity.GetComponent<Velocity>().velocity.X = 0;
                     entity.GetComponent<Velocity>().velocity.Y = 0;
                 }
@@ -119,16 +101,14 @@ namespace Warlocked
             {
                 entity.GetComponent<Velocity>().velocity.X =
                     entity.GetComponent<Velocity>().moveSpeed;
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y = 
-                    entity.GetComponent<Appearance>().animationsMap["MoveRight"];
+                entity.GetComponent<Appearance>().Animate(Appearance.Animation.MoveRight, 500, true);
             }
             else if (InputManager.Instance.KeyDown(entity.GetComponent<Input>().
                 actionKeysMap[Input.Action.MoveLeft]))
             {
                 entity.GetComponent<Velocity>().velocity.X =
                     -entity.GetComponent<Velocity>().moveSpeed;
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y = 
-                    entity.GetComponent<Appearance>().animationsMap["MoveLeft"];
+                entity.GetComponent<Appearance>().Animate(Appearance.Animation.MoveLeft, 500, true);
             }
             else
                 entity.GetComponent<Velocity>().velocity.X = 0;
@@ -139,14 +119,12 @@ namespace Warlocked
             {
                 entity.GetComponent<Velocity>().velocity.Y =
                     -entity.GetComponent<Velocity>().moveSpeed;
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y = 
-                    entity.GetComponent<Appearance>().animationsMap["MoveUp"];
+                entity.GetComponent<Appearance>().Animate(Appearance.Animation.MoveUp, 500, true);
             }
             else if (InputManager.Instance.KeyDown(entity.GetComponent<Input>().
                 actionKeysMap[Input.Action.MoveDown]))
             {
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y = 
-                    entity.GetComponent<Appearance>().animationsMap["MoveDown"];
+                entity.GetComponent<Appearance>().Animate(Appearance.Animation.MoveDown, 500, true);
                 entity.GetComponent<Velocity>().velocity.Y =
                     entity.GetComponent<Velocity>().moveSpeed;
             }
@@ -164,16 +142,11 @@ namespace Warlocked
             }
 
 
-            if (entity.GetComponent<Velocity>().velocity.X == 0 && entity.GetComponent<Velocity>().velocity.Y == 0 &&
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.isContinuous)
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive = false;
-            else
-            {
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.switchFrame = 100;
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
-                entity.GetComponent<Appearance>().image.spriteSheetEffect.isContinuous = true;
-            }
+            if (entity.GetComponent<Velocity>().velocity.X == 0 && entity.GetComponent<Velocity>().velocity.Y == 0)
+                entity.GetComponent<Appearance>().image.isActive = false;
 
+            if (entity.GetComponent<Velocity>().velocity.X != 0 || entity.GetComponent<Velocity>().velocity.Y != 0)
+                entity.GetComponent<Appearance>().image.isActive = true;
         }
     }
 }
