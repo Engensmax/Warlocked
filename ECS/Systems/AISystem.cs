@@ -30,15 +30,10 @@ namespace Warlocked
                 {
                     if (!entities[i].GetComponent<Damage>().isAttacking && entities[i].GetComponent<AI>().isEngagedWith == -1)
                     {
-                        entities[i].GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.X = 0;
                         if (entities[i].GetComponent<Team>().team == 0)
-                            entities[i].GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
-                            entities[i].GetComponent<Appearance>().animationsMap[Appearance.Animation.MoveLeft];
+                            entities[i].GetComponent<Appearance>().Animate(Appearance.Animation.MoveLeft, 500, true);
                         if (entities[i].GetComponent<Team>().team == 1)
-                            entities[i].GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
-                            entities[i].GetComponent<Appearance>().animationsMap[Appearance.Animation.MoveRight];
-                        entities[i].GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
-                        entities[i].GetComponent<Appearance>().image.spriteSheetEffect.isContinuous = true;
+                            entities[i].GetComponent<Appearance>().Animate(Appearance.Animation.MoveRight, 500, true);
 
                         switch (entities[i].GetComponent<AI>().ai)
                         {
@@ -61,27 +56,18 @@ namespace Warlocked
 
                     if (entities[i].GetComponent<Damage>().isAttacking)
                     {
-                        entities[i].GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.X = 0;
                         if (entities[i].GetComponent<Team>().team == 0)
-                            entities[i].GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
-                            entities[i].GetComponent<Appearance>().animationsMap[Appearance.Animation.AttackRight];
+                            entities[i].GetComponent<Appearance>().Animate(Appearance.Animation.AttackRight, entities[i].GetComponent<Damage>().attackTime, false);
                         if (entities[i].GetComponent<Team>().team == 1)
-                            entities[i].GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
-                            entities[i].GetComponent<Appearance>().animationsMap[Appearance.Animation.AttackLeft];
-                        entities[i].GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
-                        entities[i].GetComponent<Appearance>().image.spriteSheetEffect.isContinuous = false;
+                            entities[i].GetComponent<Appearance>().Animate(Appearance.Animation.AttackLeft, entities[i].GetComponent<Damage>().attackTime, false);
                         entities[i].GetComponent<Velocity>().velocity.X = 0;
                         entities[i].GetComponent<Velocity>().velocity.Y = 0;
-
-                        entities[i].GetComponent<Appearance>().image.spriteSheetEffect.switchFrame =
-                                entities[i].GetComponent<Damage>().attackTime /
-                                entities[i].GetComponent<Appearance>().image.spriteSheetEffect.amountOfFramesPerLine[(int)entities[i].GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y];
                         entities[i].GetComponent<Damage>().isAttacking = false;
                     }
 
-                    if (entities[i].GetComponent<AI>().isEngagedWith != -1 && !entities[i].GetComponent<Appearance>().image.spriteSheetEffect.isActive)
+                    if (entities[i].GetComponent<AI>().isEngagedWith != -1 && !entities[i].GetComponent<Appearance>().image.isActive)
                     {
-                        LOGGER.Debug("IsHitting");
+                        LOGGER.Debug("IsEngaged");
                         entities[i].GetComponent<Damage>().isHitting = true;
                         entities[i].GetComponent<AI>().isEngagedWith = -1;
                     }
@@ -93,7 +79,7 @@ namespace Warlocked
         private void ActAggressive(Entity entity, IDictionary<int, Entity> entities)
         {
             var target = entities[entity.GetComponent<Team>().team]; // sets the enemy caster as initial target
-            foreach (int i in entities.Keys)
+            foreach (int i in entities.Keys) // searches for closer targets
             {
                 if (i != entity.Id && entities[i].GetComponent<Team>().team != entity.GetComponent<Team>().team && (entities[i].HasComponent<Input>() || entities[i].GetComponent<AI>().isEngagedWith == -1))
                 {
@@ -102,21 +88,27 @@ namespace Warlocked
 
                     if (Math.Sign(xToEntity) == Math.Sign(xToTarget) && Math.Abs(xToEntity) < Math.Abs(xToTarget))
                     {
-                        target = entities[i];
+                        target = entities[i]; // finds closest target
                     }
                 }
             }
-
+            
+            // move towards target
             var direction = target.GetComponent<Position>().position - entity.GetComponent<Position>().position;
             entity.GetComponent<Velocity>().velocity = entity.GetComponent<Velocity>().moveSpeed * direction / direction.Length();
 
+
+            // if target is within range, engage in combat
             if (direction.Length() < entity.GetComponent<Damage>().attackRange)
             {
                 entity.GetComponent<AI>().isEngagedWith = target.Id;
                 entity.GetComponent<Damage>().isAttacking = true;
-
+                if (target.HasComponent<AI>())
+                {
+                    target.GetComponent<AI>().isEngagedWith = entity.Id;
+                    target.GetComponent<Damage>().isAttacking = true;
+                }
             }
-
 
         }
         private void ActDefensive(Entity entity)
