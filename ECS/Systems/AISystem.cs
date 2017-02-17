@@ -56,8 +56,12 @@ namespace Warlocked
 
                     if (entities[i].GetComponent<Damage>().isAttacking)
                     {
+                        var attackTime = entities[i].GetComponent<Damage>().attackTime;
+
+                        if (entities[i].GetComponent<AI>().isEngagedWith == 0 || entities[i].GetComponent<AI>().isEngagedWith == 1)
+                            attackTime /= 2;
                         if (entities[i].GetComponent<Team>().team == 0)
-                            entities[i].GetComponent<Appearance>().Animate(Appearance.Animation.AttackRight, entities[i].GetComponent<Damage>().attackTime, false);
+                            entities[i].GetComponent<Appearance>().Animate(Appearance.Animation.AttackRight, attackTime, false);
                         if (entities[i].GetComponent<Team>().team == 1)
                             entities[i].GetComponent<Appearance>().Animate(Appearance.Animation.AttackLeft, entities[i].GetComponent<Damage>().attackTime, false);
                         entities[i].GetComponent<Velocity>().velocity.X = 0;
