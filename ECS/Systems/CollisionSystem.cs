@@ -26,17 +26,26 @@ namespace Warlocked
         {
         }
 
-        public override void Process()
-        {
-            base.Process();
-
-
-        }
-
         protected override void ProcessEntities(IDictionary<int, Entity> entities)
         {
             foreach (int i in entities.Keys)
             {
+
+                if (entities[i].GetComponent<Position>().position.X >= 800 - 64 && entities[i].GetComponent<Velocity>().velocity.X > 0)
+                    entities[i].GetComponent<Velocity>().velocity.X = 0;
+
+                if (entities[i].GetComponent<Position>().position.X <= 0 && entities[i].GetComponent<Velocity>().velocity.X < 0)
+                    entities[i].GetComponent<Velocity>().velocity.X = 0;
+
+
+                if (entities[i].GetComponent<Position>().position.Y >= 416-64-16 && entities[i].GetComponent<Velocity>().velocity.Y > 0)
+                    entities[i].GetComponent<Velocity>().velocity.Y = 0;
+
+                if (entities[i].GetComponent<Position>().position.Y <= 16 && entities[i].GetComponent<Velocity>().velocity.Y < 0)
+                    entities[i].GetComponent<Velocity>().velocity.Y = 0;
+
+
+
                 foreach (int j in entities.Keys)
                 {
                     if (j > i)

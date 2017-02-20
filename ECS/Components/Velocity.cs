@@ -12,6 +12,7 @@ namespace Warlocked
     {
         public Vector2 velocity;
         public int moveSpeed;
+        public int currentMoveSpeed;
 
         public Velocity()
         {

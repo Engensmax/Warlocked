@@ -40,12 +40,11 @@ namespace Warlocked
             entity.GetComponent<SpellBook>().spells.Add(new FireBallSpell());
             entity.GetComponent<SpellBook>().spells.Add(new FireBallSpell());
             entity.GetComponent<SpellBook>().spells.Add(new FireBallSpell());
-            entity.GetComponent<SpellBook>().spells.Add(new FireBallSpell());
-            entity.GetComponent<SpellBook>().spells.Add(new FireBallSpell());
 
             entity.GetComponent<SpellBook>().Load();
 
             entity.AddComponentFromPool<Velocity>().moveSpeed = 3;
+            entity.AddComponentFromPool<Velocity>().currentMoveSpeed = 3;
             entity.GetComponent<Appearance>().Initialize("Images/FireCaster.xml");
 
             entity.GetComponent<Appearance>().image.isActive = true;

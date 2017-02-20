@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Image>
-  <path>DinoGoblin2</path>
+  <path>DinoGoblin</path>
   <isVisible>true</isVisible>
   <effects>SpriteSheetEffect</effects>
   <spriteSheetEffect>

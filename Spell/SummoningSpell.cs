@@ -10,7 +10,7 @@ namespace Warlocked
 {
     abstract class SummoningSpell : Spell
     {
-        protected SummoningSpell(int coolDown) : base(coolDown)
+        protected SummoningSpell(int coolDown, string iconPath) : base(coolDown, iconPath)
         { }
         public override void Cast(Entity caster, EntityWorld entityWorld)
         {

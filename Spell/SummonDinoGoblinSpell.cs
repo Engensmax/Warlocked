@@ -14,7 +14,7 @@ namespace Warlocked
         private static readonly ILog LOGGER = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         
 
-        public SummonDinoGoblinSpell() : base(400)
+        public SummonDinoGoblinSpell() : base(400, "Images/Icons/DinoGoblin.xml")
         {
             this.manaCost = 1;
             this.castTime = 400; // in milliseconds
@@ -47,6 +47,7 @@ namespace Warlocked
 
 
             goblin.GetComponent<Velocity>().moveSpeed = 2;
+            goblin.GetComponent<Velocity>().currentMoveSpeed = 2;
 
             if (caster.Id == 0)
                 goblin.GetComponent<Velocity>().velocity.X = goblin.GetComponent<Velocity>().moveSpeed;

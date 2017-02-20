@@ -12,11 +12,10 @@ namespace Warlocked
     {
         private static readonly ILog LOGGER = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public FireBallSpell() : base(2000)
+        public FireBallSpell() : base(2000, "Images/Icons/FireBall.xml")
         {
             this.manaCost = 1;
             this.castTime = 4000; // in milliseconds
-            this.coolDown = 100;  // in milliseconds
         }
 
         public override void Cast(Entity caster, EntityWorld entityWorld)

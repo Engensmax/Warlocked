@@ -99,7 +99,7 @@ namespace Warlocked
             
             // move towards target
             var direction = target.GetComponent<Position>().position - entity.GetComponent<Position>().position;
-            entity.GetComponent<Velocity>().velocity = entity.GetComponent<Velocity>().moveSpeed * direction / direction.Length();
+            entity.GetComponent<Velocity>().velocity = entity.GetComponent<Velocity>().currentMoveSpeed * direction / direction.Length();
 
 
             // if target is within range, engage in combat

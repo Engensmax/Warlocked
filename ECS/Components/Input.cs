@@ -59,8 +59,8 @@ namespace Warlocked
                 this.actionKeysMap.Add(Action.MenuButton1, Keys.D7);
                 this.actionKeysMap.Add(Action.MenuButton2, Keys.D8);
                 this.actionKeysMap.Add(Action.MenuButton3, Keys.D9);
-                this.actionKeysMap.Add(Action.NextButton, Keys.U);
-                this.actionKeysMap.Add(Action.BackButton, Keys.O);
+                this.actionKeysMap.Add(Action.NextButton, Keys.O);
+                this.actionKeysMap.Add(Action.BackButton, Keys.U);
                 this.actionKeysMap.Add(Action.Attack, Keys.Enter);
                 this.actionKeysMap.Add(Action.EscapeButton, Keys.OemComma); 
             }

@@ -8,11 +8,13 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Artemis.System;
 using Artemis;
+using log4net;
 
 namespace Warlocked
 {
     public class HUDManager
     {
+        private static readonly ILog LOGGER = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         GameTime gameTime;
         Dictionary<string, Image> images;
         private static HUDManager instance;
@@ -69,7 +71,22 @@ namespace Warlocked
                 DrawImages(player1);
             if (player2.IsActive)
                 DrawImages(player2);
+            
+            int j = 0;
+            foreach (int i in player1.GetComponent<SpellBook>().spellMenu)
+            {
+                player1.GetComponent<SpellBook>().spells[i].icon.position = new Vector2(190 + j * 70, 418);
+                player1.GetComponent<SpellBook>().spells[i].icon.Draw();
+                j++;
+            }
 
+            j = 0;
+            foreach (int i in player2.GetComponent<SpellBook>().spellMenu)
+            {
+                player2.GetComponent<SpellBook>().spells[i].icon.position = new Vector2(191 + 210 + j * 70, 418);
+                player2.GetComponent<SpellBook>().spells[i].icon.Draw();
+                j++;
+            }
 
             foreach (Image image in this.images.Values)
             {

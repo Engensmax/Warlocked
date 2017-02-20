@@ -13,6 +13,7 @@ namespace Warlocked
 {
     public abstract class Spell
     {
+        public string iconPath;
         public Image icon;
         public Image castImage;
         public int manaCost;
@@ -22,8 +23,10 @@ namespace Warlocked
         public bool isCoolingDown;
         private GameTime gameTime;
 
-        protected Spell(int coolDown)
+        protected Spell(int coolDown, string iconPath)
         {
+            this.iconPath = iconPath;
+            this.icon = new XmlManager<Image>().Load(iconPath);
             if (castImage != null)
                 castImage.LoadContent();
             this.isCoolingDown = false;

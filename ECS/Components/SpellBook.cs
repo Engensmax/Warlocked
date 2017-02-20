@@ -51,6 +51,12 @@ namespace Warlocked
                     spellMap[2].Add(spellID);
                 }
             }
+
+            foreach (Spell spell in spells)
+            {
+                spell.icon.LoadContent();
+            }
+
         }
 
         public void Cleanup()

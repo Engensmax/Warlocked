@@ -11,6 +11,7 @@ namespace Warlocked
     class Team : ComponentPoolable
     {
         public int team;
+
         //obligatory for poolable Components
         public void Cleanup()
         {

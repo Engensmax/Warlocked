@@ -62,7 +62,6 @@ namespace Warlocked
 
         }
 
-
         private void HandleSpellMenu(Entity entity)
         {
             
@@ -133,6 +132,7 @@ namespace Warlocked
                 {
                    LOGGER.Info("Back");
                    spellbook.currentMenu = -1;
+                   ChangeMenu();
 
                 }
             }
@@ -143,24 +143,16 @@ namespace Warlocked
 
         private void ChangeMenu()
         {
-            if (spellbook.spellMap[spellbook.currentMenu].Count > spellbook.currentSelection)
+            spellbook.spellMenu = new List<int>();
+            if (spellbook.currentMenu != -1 && spellbook.spellMap[spellbook.currentMenu].Count > spellbook.currentSelection)
             {
-                spellbook.spellMenu = new List<int>();
-
                 for (int i = spellbook.currentSelection; i < (spellbook.currentSelection + 3) && i < spellbook.spellMap[spellbook.currentMenu].Count; i++)
                     spellbook.spellMenu.Add(spellbook.spellMap[spellbook.currentMenu][i]);
-                LOGGER.Debug("Changed Menu to");
-                foreach (int id in spellbook.spellMenu)
-                {
-                    LOGGER.Info(id);
-                }
             }
         }
 
         private void CastSpell(Entity entity, int spellNumber)
         {
-            LOGGER.Info("Casting Spell! CurrentMenu: " + spellbook.currentMenu + ", spellNumber: " + spellbook.spellMenu[spellNumber]);
-
             if (spellbook.spellMenu.Count > spellNumber && 
                 spellbook.spells[spellbook.spellMenu[spellNumber]].manaCost <= entity.GetComponent<Mana>().currentMana && 
                 !spellbook.spells[spellbook.spellMenu[spellNumber]].isCoolingDown && 
@@ -171,7 +163,8 @@ namespace Warlocked
                 spellbook.isCasting = true;
                 spellbook.currentSpell = spellbook.spellMenu[spellNumber];
                 spellbook.currentMenu = -1;
-                entity.GetComponent<Appearance>().Animate(Appearance.Animation.CastDown, entity.GetComponent<SpellBook>().spells[0].castTime, false);
+                ChangeMenu();
+                entity.GetComponent<Appearance>().Animate(Appearance.Animation.CastDown, spellbook.spells[spellbook.currentSpell].castTime, false);
                 entity.GetComponent<Velocity>().velocity.X = 0;
                 entity.GetComponent<Velocity>().velocity.Y = 0;
             }
@@ -200,14 +193,14 @@ namespace Warlocked
                             actionKeysMap[Input.Action.MoveRight]))
             {
                 entity.GetComponent<Velocity>().velocity.X =
-                    entity.GetComponent<Velocity>().moveSpeed;
+                    entity.GetComponent<Velocity>().currentMoveSpeed;
                 entity.GetComponent<Appearance>().Animate(Appearance.Animation.MoveRight, 500, true);
             }
             else if (InputManager.Instance.KeyDown(entity.GetComponent<Input>().
                 actionKeysMap[Input.Action.MoveLeft]))
             {
                 entity.GetComponent<Velocity>().velocity.X =
-                    -entity.GetComponent<Velocity>().moveSpeed;
+                    -entity.GetComponent<Velocity>().currentMoveSpeed;
                 entity.GetComponent<Appearance>().Animate(Appearance.Animation.MoveLeft, 500, true);
             }
             else
@@ -218,7 +211,7 @@ namespace Warlocked
                 actionKeysMap[Input.Action.MoveUp]))
             {
                 entity.GetComponent<Velocity>().velocity.Y =
-                    -entity.GetComponent<Velocity>().moveSpeed;
+                    -entity.GetComponent<Velocity>().currentMoveSpeed;
                 entity.GetComponent<Appearance>().Animate(Appearance.Animation.MoveUp, 500, true);
             }
             else if (InputManager.Instance.KeyDown(entity.GetComponent<Input>().
@@ -226,7 +219,7 @@ namespace Warlocked
             {
                 entity.GetComponent<Appearance>().Animate(Appearance.Animation.MoveDown, 500, true);
                 entity.GetComponent<Velocity>().velocity.Y =
-                    entity.GetComponent<Velocity>().moveSpeed;
+                    entity.GetComponent<Velocity>().currentMoveSpeed;
             }
             else
                 entity.GetComponent<Velocity>().velocity.Y = 0;
@@ -235,10 +228,10 @@ namespace Warlocked
             {
                 entity.GetComponent<Velocity>().velocity.X =
                     Math.Sign(entity.GetComponent<Velocity>().velocity.X) *
-                    0.707f * entity.GetComponent<Velocity>().moveSpeed;
+                    0.707f * entity.GetComponent<Velocity>().currentMoveSpeed;
                 entity.GetComponent<Velocity>().velocity.Y =
                     Math.Sign(entity.GetComponent<Velocity>().velocity.Y) *
-                    0.707f * entity.GetComponent<Velocity>().moveSpeed;
+                    0.707f * entity.GetComponent<Velocity>().currentMoveSpeed;
             }
 
 
