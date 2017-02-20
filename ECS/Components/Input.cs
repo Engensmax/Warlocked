@@ -18,9 +18,12 @@ namespace Warlocked
             MoveDown,
             MoveLeft,
             MoveRight,
-            SpellButton1,
-            SpellButton2,
-            SpellButton3,
+            MenuButton1,
+            MenuButton2,
+            MenuButton3,
+            NextButton,
+            BackButton,
+            EscapeButton,
             Attack
         }
 
@@ -37,10 +40,13 @@ namespace Warlocked
                 this.actionKeysMap.Add(Action.MoveLeft, Keys.A);
                 this.actionKeysMap.Add(Action.MoveDown, Keys.S);
                 this.actionKeysMap.Add(Action.MoveRight, Keys.D);
-                this.actionKeysMap.Add(Action.SpellButton1, Keys.Q);
-                this.actionKeysMap.Add(Action.SpellButton2, Keys.E);
-                this.actionKeysMap.Add(Action.SpellButton3, Keys.F);
+                this.actionKeysMap.Add(Action.MenuButton1, Keys.D1);
+                this.actionKeysMap.Add(Action.MenuButton2, Keys.D2);
+                this.actionKeysMap.Add(Action.MenuButton3, Keys.D3);
+                this.actionKeysMap.Add(Action.NextButton, Keys.E);
+                this.actionKeysMap.Add(Action.BackButton, Keys.Q);
                 this.actionKeysMap.Add(Action.Attack, Keys.Space);
+                this.actionKeysMap.Add(Action.EscapeButton, Keys.X);
             }
 
             if (playerNumber == 2)
@@ -50,10 +56,13 @@ namespace Warlocked
                 this.actionKeysMap.Add(Action.MoveLeft, Keys.J);
                 this.actionKeysMap.Add(Action.MoveDown, Keys.K);
                 this.actionKeysMap.Add(Action.MoveRight, Keys.L);
-                this.actionKeysMap.Add(Action.SpellButton1, Keys.H);
-                this.actionKeysMap.Add(Action.SpellButton2, Keys.U);
-                this.actionKeysMap.Add(Action.SpellButton3, Keys.O);
+                this.actionKeysMap.Add(Action.MenuButton1, Keys.D7);
+                this.actionKeysMap.Add(Action.MenuButton2, Keys.D8);
+                this.actionKeysMap.Add(Action.MenuButton3, Keys.D9);
+                this.actionKeysMap.Add(Action.NextButton, Keys.U);
+                this.actionKeysMap.Add(Action.BackButton, Keys.O);
                 this.actionKeysMap.Add(Action.Attack, Keys.Enter);
+                this.actionKeysMap.Add(Action.EscapeButton, Keys.OemComma); 
             }
         }
 

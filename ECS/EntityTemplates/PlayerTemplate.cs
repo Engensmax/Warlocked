@@ -25,15 +25,25 @@ namespace Warlocked
             entity.AddComponentFromPool<Team>();
             entity.AddComponentFromPool<Mana>();
             entity.AddComponentFromPool<Damage>();
-            entity.AddComponentFromPool<Spells>();
+            entity.AddComponentFromPool<SpellBook>();
             entity.AddComponentFromPool<Position>();
             entity.AddComponentFromPool<Velocity>();
             entity.AddComponentFromPool<Collision>();
             entity.AddComponentFromPool<Input>();
             entity.AddComponentFromPool<Appearance>();
 
-            entity.GetComponent<Spells>().spells.Add(new SummonDinoGoblinSpell());
+            entity.GetComponent<SpellBook>().spells.Add(new SummonDinoGoblinSpell());
+            entity.GetComponent<SpellBook>().spells.Add(new SummonDinoGoblinSpell());
+            entity.GetComponent<SpellBook>().spells.Add(new SummonDinoGoblinSpell());
+            entity.GetComponent<SpellBook>().spells.Add(new FireBallSpell());
+            entity.GetComponent<SpellBook>().spells.Add(new FireBallSpell());
+            entity.GetComponent<SpellBook>().spells.Add(new FireBallSpell());
+            entity.GetComponent<SpellBook>().spells.Add(new FireBallSpell());
+            entity.GetComponent<SpellBook>().spells.Add(new FireBallSpell());
+            entity.GetComponent<SpellBook>().spells.Add(new FireBallSpell());
+            entity.GetComponent<SpellBook>().spells.Add(new FireBallSpell());
 
+            entity.GetComponent<SpellBook>().Load();
 
             entity.AddComponentFromPool<Velocity>().moveSpeed = 3;
             entity.GetComponent<Appearance>().Initialize("Images/FireCaster.xml");

@@ -30,6 +30,7 @@ namespace Warlocked
             CastLeft,
             CastRight,
             Spawn,
+            Respawn,
             Die
         }
 
@@ -50,6 +51,7 @@ namespace Warlocked
             animationsMap.Add(Animation.CastLeft, 0);
             animationsMap.Add(Animation.CastRight, 0);
             animationsMap.Add(Animation.Spawn, 0);
+            animationsMap.Add(Animation.Respawn, 0);
             animationsMap.Add(Animation.Die, 0);
         }
 

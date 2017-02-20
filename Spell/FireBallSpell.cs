@@ -14,9 +14,9 @@ namespace Warlocked
 
         public FireBallSpell() : base(2000)
         {
-            this.manaCost = 2;
-            this.castTime = 400; // in milliseconds
-            this.coolDown = 5000;  // in milliseconds
+            this.manaCost = 1;
+            this.castTime = 4000; // in milliseconds
+            this.coolDown = 100;  // in milliseconds
         }
 
         public override void Cast(Entity caster, EntityWorld entityWorld)

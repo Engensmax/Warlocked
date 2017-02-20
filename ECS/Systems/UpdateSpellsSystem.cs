@@ -18,13 +18,13 @@ namespace Warlocked
     internal class UpdateSpellsSystem : EntityProcessingSystem
     {
         public UpdateSpellsSystem()
-            : base(Aspect.All(typeof(Spells)))
+            : base(Aspect.All(typeof(SpellBook)))
         {
         }
 
         public override void Process(Entity entity)
         {
-            foreach (Spell spell in entity.GetComponent<Spells>().spells)
+            foreach (Spell spell in entity.GetComponent<SpellBook>().spells)
                 spell.Update();
 
         }

@@ -107,7 +107,7 @@ namespace Warlocked
             {
                 entity.GetComponent<AI>().isEngagedWith = target.Id;
                 entity.GetComponent<Damage>().isAttacking = true;
-                if (target.HasComponent<AI>())
+                if (target.HasComponent<AI>() && target.GetComponent<AI>().isEngagedWith == -1)
                 {
                     target.GetComponent<AI>().isEngagedWith = entity.Id;
                     target.GetComponent<Damage>().isAttacking = true;

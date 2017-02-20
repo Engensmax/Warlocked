@@ -13,15 +13,19 @@ namespace Warlocked
 {
     public abstract class Spell
     {
-        
+        public Image icon;
+        public Image castImage;
         public int manaCost;
         public int castTime; // in milliseconds
         public int coolDown;  // in milliseconds
         private Timer coolDownTimer;
         public bool isCoolingDown;
+        private GameTime gameTime;
 
         protected Spell(int coolDown)
         {
+            if (castImage != null)
+                castImage.LoadContent();
             this.isCoolingDown = false;
             this.coolDown = coolDown;
             this.coolDownTimer = new Timer(new TimeSpan(coolDown));
@@ -35,12 +39,21 @@ namespace Warlocked
 
         public void Update()
         {
-            if (coolDownTimer.IsReached(EntitySystem.BlackBoard.GetEntry<GameTime>("GameTime").ElapsedGameTime.Milliseconds))
+            gameTime = EntitySystem.BlackBoard.GetEntry<GameTime>("GameTime");
+            if (coolDownTimer.IsReached(gameTime.ElapsedGameTime.Milliseconds))
             {
                 this.isCoolingDown = false;
             }
+            if (castImage != null)
+                castImage.Update(gameTime);
+
         }
-        
+
+        public void Draw()
+        {
+            if (castImage != null)
+                castImage.Draw();
+        }
 
     }
 }

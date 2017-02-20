@@ -45,7 +45,7 @@
     <Compile Include="ECS\Components\Pickupable.cs" />
     <Compile Include="ECS\Components\Collideable.cs" />
     <Compile Include="ECS\Components\Input.cs" />
-    <Compile Include="ECS\Components\Spells.cs" />
+    <Compile Include="ECS\Components\SpellBook.cs" />
     <Compile Include="ECS\Components\Appearance.cs" />
     <Compile Include="ECS\Components\Velocity.cs" />
     <Compile Include="ECS\Components\Position.cs" />
@@ -75,6 +75,7 @@
     <Compile Include="ECS\Systems\ManaRegenSystem.cs" />
     <Compile Include="Managers\DictionaryItem.cs" />
     <Compile Include="Managers\RandomManager.cs" />
+    <Compile Include="Spell\EnchantmentSpell.cs" />
     <Compile Include="Spell\FireBallSpell.cs" />
     <Compile Include="Spell\Spell.cs" />
     <Compile Include="Spell\EffectSpell.cs" />

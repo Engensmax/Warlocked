@@ -13,9 +13,10 @@ namespace Warlocked
 {
     public class HUDManager
     {
-        
+        GameTime gameTime;
         Dictionary<string, Image> images;
         private static HUDManager instance;
+        private static readonly int barLength = 188; 
 
         public static HUDManager Instance
         {
@@ -54,23 +55,37 @@ namespace Warlocked
             }
         }
 
+        public void Update()
+        {
+            gameTime = EntitySystem.BlackBoard.GetEntry<GameTime>("GameTime"); 
+            foreach (Image image in this.images.Values)
+            {
+                image.Update(gameTime);
+            }
+        }
         public void Draw(Entity player1, Entity player2)
         {
-            if (player1.IsActive && player2.IsActive) // not sure if works.
-            {
-                images["HealthBarFilling1"].scale.X = 188 * player1.GetComponent<Health>().currentHealth / 20;
-                images["HealthBarFilling2"].scale.X = 188 * player2.GetComponent<Health>().currentHealth / 20;
+            if (player1.IsActive)
+                DrawImages(player1);
+            if (player2.IsActive)
+                DrawImages(player2);
 
-                images["MaxManaBarFilling1"].scale.X = 188 * player1.GetComponent<Mana>().maxMana / 10;
-                images["ManaBarFilling1"].scale.X = 188 * player1.GetComponent<Mana>().currentMana / 10;
-                images["MaxManaBarFilling2"].scale.X = 188 * player2.GetComponent<Mana>().maxMana / 10;
-                images["ManaBarFilling2"].scale.X = 188 * player2.GetComponent<Mana>().currentMana / 10;
-            }
 
             foreach (Image image in this.images.Values)
             {
                 image.Draw();
             }
+        }
+
+        private void DrawImages(Entity player)
+        {
+            images[string.Concat("HealthBarFilling", (player.Id+1).ToString())].scale.X = barLength * player.GetComponent<Health>().currentHealth / 20;
+
+            images[string.Concat("MaxManaBarFilling", (player.Id + 1).ToString())].scale.X = barLength * player.GetComponent<Mana>().maxMana / 10;
+            images[string.Concat("ManaBarFilling", (player.Id + 1).ToString())].scale.X = barLength * player.GetComponent<Mana>().currentMana / 10;
+
+
+
         }
     }
 }

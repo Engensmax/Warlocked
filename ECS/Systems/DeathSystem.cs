@@ -34,6 +34,7 @@ namespace Warlocked
                 { }
                 else
                 {
+                    entity.GetComponent<Appearance>().Animate(Appearance.Animation.Die, 300, false);
                     if (entity.GetComponent<Health>().DeathTimer.IsReached(EntitySystem.BlackBoard.GetEntry<GameTime>("GameTime").ElapsedGameTime.Milliseconds))
                     {
                         LOGGER.Info("Death");

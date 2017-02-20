@@ -19,27 +19,32 @@ namespace Warlocked
     internal class InputSystem : EntityProcessingSystem
     {
         private static readonly ILog LOGGER = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private SpellBook spellbook;
 
         public InputSystem()
-            : base(Aspect.All(typeof(Input)))
+            : base(Aspect.All(typeof(Input), typeof(SpellBook)))
         {
         }
 
         public override void Process(Entity entity)
         {
-            if (entity.GetComponent<Input>().isActive)
-                HandleCasting(entity);
+            this.spellbook = entity.GetComponent<SpellBook>();
+
+            HandleSpellMenu(entity);
+            
             if (entity.GetComponent<Input>().isActive)
                 HandleAttacking(entity);
             if (entity.GetComponent<Input>().isActive)
                 HandleMovement(entity);
 
-                if (entity.GetComponent<Spells>().isCasting)
+                if (entity.GetComponent<SpellBook>().isCasting)
             {
                 if (!entity.GetComponent<Appearance>().image.isActive)
                 {
-                    entity.GetComponent<Spells>().spells[0].Cast(entity, entityWorld);
-                    entity.GetComponent<Spells>().isCasting = false;
+                    spellbook.spells[spellbook.currentSpell].Cast(entity, entityWorld);
+
+                    spellbook.isCasting = false;
+
                     entity.GetComponent<Input>().isActive = true;
                 }  
             }
@@ -57,6 +62,121 @@ namespace Warlocked
 
         }
 
+
+        private void HandleSpellMenu(Entity entity)
+        {
+            
+            if (spellbook.currentMenu == -1) // Means we are in the normal menu
+            {
+                if (InputManager.Instance.KeyPressed(entity.GetComponent<Input>().
+                            actionKeysMap[Input.Action.MenuButton1]))
+                {
+                    LOGGER.Info("EffectSpells Menu");
+                    spellbook.currentMenu = 0;
+                    ChangeMenu();
+                }
+                else if (InputManager.Instance.KeyPressed(entity.GetComponent<Input>().
+                            actionKeysMap[Input.Action.MenuButton2]))
+                {
+                    LOGGER.Info("SummoningSpells Menu");
+                    spellbook.currentMenu = 1;
+                    ChangeMenu();
+                }
+                else if (InputManager.Instance.KeyPressed(entity.GetComponent<Input>().
+                            actionKeysMap[Input.Action.MenuButton3]))
+                {
+                    spellbook.spellMenu = new List<int>();
+                    LOGGER.Info("EnchantmentSpells Menu");
+                    spellbook.currentMenu = 2;
+                    ChangeMenu();
+                }
+            }
+            else
+            {
+                if (InputManager.Instance.KeyPressed(entity.GetComponent<Input>().
+                            actionKeysMap[Input.Action.MenuButton1]))
+                {
+                    CastSpell(entity, 0);
+                }
+                else if (InputManager.Instance.KeyPressed(entity.GetComponent<Input>().
+                            actionKeysMap[Input.Action.MenuButton2]))
+                {
+                    CastSpell(entity, 1);
+                }
+                else if (InputManager.Instance.KeyPressed(entity.GetComponent<Input>().
+                            actionKeysMap[Input.Action.MenuButton3]))
+                {
+                    CastSpell(entity, 2);
+                }
+                else if (InputManager.Instance.KeyPressed(entity.GetComponent<Input>().
+                            actionKeysMap[Input.Action.NextButton]))
+                {
+                    if (spellbook.spellMap[spellbook.currentMenu].Count > spellbook.currentSelection + 1)
+                    {
+                        spellbook.currentSelection += 3;
+                        ChangeMenu();
+                        // TODO: Draw an arrow if this is possible
+                    }
+                }
+                else if (InputManager.Instance.KeyPressed(entity.GetComponent<Input>().
+                            actionKeysMap[Input.Action.BackButton]))
+                {
+                    if (spellbook.currentSelection > 0)
+                    {
+                        spellbook.currentSelection -= 3;
+                        ChangeMenu();
+                        // TODO: Draw an arrow if this is possible
+                    }
+                }
+                else if (InputManager.Instance.KeyPressed(entity.GetComponent<Input>().
+                            actionKeysMap[Input.Action.EscapeButton]))
+                {
+                   LOGGER.Info("Back");
+                   spellbook.currentMenu = -1;
+
+                }
+            }
+
+
+
+        }
+
+        private void ChangeMenu()
+        {
+            if (spellbook.spellMap[spellbook.currentMenu].Count > spellbook.currentSelection)
+            {
+                spellbook.spellMenu = new List<int>();
+
+                for (int i = spellbook.currentSelection; i < (spellbook.currentSelection + 3) && i < spellbook.spellMap[spellbook.currentMenu].Count; i++)
+                    spellbook.spellMenu.Add(spellbook.spellMap[spellbook.currentMenu][i]);
+                LOGGER.Debug("Changed Menu to");
+                foreach (int id in spellbook.spellMenu)
+                {
+                    LOGGER.Info(id);
+                }
+            }
+        }
+
+        private void CastSpell(Entity entity, int spellNumber)
+        {
+            LOGGER.Info("Casting Spell! CurrentMenu: " + spellbook.currentMenu + ", spellNumber: " + spellbook.spellMenu[spellNumber]);
+
+            if (spellbook.spellMenu.Count > spellNumber && 
+                spellbook.spells[spellbook.spellMenu[spellNumber]].manaCost <= entity.GetComponent<Mana>().currentMana && 
+                !spellbook.spells[spellbook.spellMenu[spellNumber]].isCoolingDown && 
+                entity.GetComponent<Input>().isActive)
+            {
+                entity.GetComponent<Mana>().currentMana -= spellbook.spells[spellbook.spellMenu[spellNumber]].manaCost;
+                entity.GetComponent<Input>().isActive = false;
+                spellbook.isCasting = true;
+                spellbook.currentSpell = spellbook.spellMenu[spellNumber];
+                spellbook.currentMenu = -1;
+                entity.GetComponent<Appearance>().Animate(Appearance.Animation.CastDown, entity.GetComponent<SpellBook>().spells[0].castTime, false);
+                entity.GetComponent<Velocity>().velocity.X = 0;
+                entity.GetComponent<Velocity>().velocity.Y = 0;
+            }
+        }
+
         private void HandleAttacking(Entity entity)
         {
             if (InputManager.Instance.KeyPressed(entity.GetComponent<Input>().
@@ -72,26 +192,6 @@ namespace Warlocked
                 entity.GetComponent<Velocity>().velocity.X = 0;
                 entity.GetComponent<Velocity>().velocity.Y = 0;
             }
-        }
-
-        private void HandleCasting(Entity entity)
-        {
-            if (InputManager.Instance.KeyPressed(entity.GetComponent<Input>().
-                            actionKeysMap[Input.Action.SpellButton1]))
-            {
-                if (entity.GetComponent<Spells>().spells[0].manaCost <= entity.GetComponent<Mana>().currentMana && !entity.GetComponent<Spells>().spells[0].isCoolingDown)
-                {
-                    entity.GetComponent<Mana>().currentMana -= entity.GetComponent<Spells>().spells[0].manaCost;
-                    entity.GetComponent<Input>().isActive = false;
-                    entity.GetComponent<Spells>().isCasting = true;
-                    entity.GetComponent<Appearance>().Animate(Appearance.Animation.CastDown, entity.GetComponent<Spells>().spells[0].castTime, false);
-                    entity.GetComponent<Velocity>().velocity.X = 0;
-                    entity.GetComponent<Velocity>().velocity.Y = 0;
-                }
-            }
-
-
-
         }
 
         private static void HandleMovement(Entity entity)

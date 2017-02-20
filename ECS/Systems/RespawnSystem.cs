@@ -30,6 +30,7 @@ namespace Warlocked
         {
             if (entity.GetComponent<SpawnPoint>().isRespawning)
             {
+                entity.GetComponent<Appearance>().Animate(Appearance.Animation.Respawn, 300, false);
                 entity.GetComponent<Damage>().isAttacking = false;
                 entity.GetComponent<AI>().isEngagedWith = -1;
                 if (entity.GetComponent<SpawnPoint>().RespawnTimer.IsReached(EntitySystem.BlackBoard.GetEntry<GameTime>("GameTime").ElapsedGameTime.Milliseconds))
