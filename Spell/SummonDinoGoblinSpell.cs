@@ -49,10 +49,11 @@ namespace Warlocked
             goblin.GetComponent<Velocity>().moveSpeed = 2;
             goblin.GetComponent<Velocity>().currentMoveSpeed = 2;
 
+            // probably obsolete by now
             if (caster.Id == 0)
-                goblin.GetComponent<Velocity>().velocity.X = goblin.GetComponent<Velocity>().moveSpeed;
+                goblin.GetComponent<Velocity>().velocity.X = goblin.GetComponent<Velocity>().currentMoveSpeed;
             if (caster.Id == 1)
-                goblin.GetComponent<Velocity>().velocity.X = - goblin.GetComponent<Velocity>().moveSpeed;
+                goblin.GetComponent<Velocity>().velocity.X = - goblin.GetComponent<Velocity>().currentMoveSpeed;
 
             goblin.Refresh();
 

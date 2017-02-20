@@ -31,6 +31,7 @@ namespace Warlocked
             entity.AddComponentFromPool<Collision>();
             entity.AddComponentFromPool<Input>();
             entity.AddComponentFromPool<Appearance>();
+            entity.AddComponentFromPool<Velocity>();
 
             entity.GetComponent<SpellBook>().spells.Add(new SummonDinoGoblinSpell());
             entity.GetComponent<SpellBook>().spells.Add(new SummonDinoGoblinSpell());
@@ -43,8 +44,8 @@ namespace Warlocked
 
             entity.GetComponent<SpellBook>().Load();
 
-            entity.AddComponentFromPool<Velocity>().moveSpeed = 3;
-            entity.AddComponentFromPool<Velocity>().currentMoveSpeed = 3;
+            entity.GetComponent<Velocity>().moveSpeed = 3;
+            entity.GetComponent<Velocity>().currentMoveSpeed = 3;
             entity.GetComponent<Appearance>().Initialize("Images/FireCaster.xml");
 
             entity.GetComponent<Appearance>().image.isActive = true;

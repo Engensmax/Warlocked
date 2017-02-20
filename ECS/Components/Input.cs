@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Artemis;
+using Artemis.Utils;
 using Microsoft.Xna.Framework.Input;
 
 namespace Warlocked
@@ -29,6 +30,7 @@ namespace Warlocked
 
         public bool isActive = true;
         public Dictionary<Action, Keys> actionKeysMap;
+        public Timer overstepTimer = new Timer(new TimeSpan(1000));
 
         public void Initialize(int playerNumber)
         {

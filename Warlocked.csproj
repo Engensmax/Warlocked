@@ -56,6 +56,7 @@
     <Compile Include="ECS\EntityTemplates\ManaCrystalTemplate.cs" />
     <Compile Include="ECS\EntityTemplates\MonsterTemplate.cs" />
     <Compile Include="ECS\EntityTemplates\PlayerTemplate.cs" />
+    <Compile Include="ECS\Systems\OverstepSystem.cs" />
     <Compile Include="ECS\Systems\AISystem.cs" />
     <Compile Include="ECS\Systems\DeathSystem.cs" />
     <Compile Include="ECS\Systems\RespawnSystem.cs" />

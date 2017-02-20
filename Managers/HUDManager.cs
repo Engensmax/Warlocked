@@ -71,24 +71,51 @@ namespace Warlocked
                 DrawImages(player1);
             if (player2.IsActive)
                 DrawImages(player2);
-            
+
             int j = 0;
-            foreach (int i in player1.GetComponent<SpellBook>().spellMenu)
+            if (player1.GetComponent<SpellBook>().currentMenu != -1)
             {
-                player1.GetComponent<SpellBook>().spells[i].icon.position = new Vector2(190 + j * 70, 418);
-                player1.GetComponent<SpellBook>().spells[i].icon.Draw();
-                j++;
+
+                images["SpellsIcon1"].isVisible = false;
+                images["SummonIcon1"].isVisible = false;
+                images["AurasIcon1"].isVisible = false;
+                j = 0;
+                foreach (int i in player1.GetComponent<SpellBook>().spellMenu)
+                {
+                    player1.GetComponent<SpellBook>().spells[i].icon.position = new Vector2(190 + j * 70, 418);
+                    player1.GetComponent<SpellBook>().spells[i].icon.Draw();
+                    j++;
+                }
+            }
+            else
+            {
+                images["SpellsIcon1"].isVisible = true;
+                images["SummonIcon1"].isVisible = true;
+                images["AurasIcon1"].isVisible = true;
             }
 
-            j = 0;
-            foreach (int i in player2.GetComponent<SpellBook>().spellMenu)
+            if (player2.GetComponent<SpellBook>().currentMenu != -1)
             {
-                player2.GetComponent<SpellBook>().spells[i].icon.position = new Vector2(191 + 210 + j * 70, 418);
-                player2.GetComponent<SpellBook>().spells[i].icon.Draw();
-                j++;
+
+                images["SpellsIcon2"].isVisible = false;
+                images["SummonIcon2"].isVisible = false;
+                images["AurasIcon2"].isVisible = false;
+                j = 0;
+                foreach (int i in player2.GetComponent<SpellBook>().spellMenu)
+                {
+                    player2.GetComponent<SpellBook>().spells[i].icon.position = new Vector2(191 + 210 + j * 70, 418);
+                    player2.GetComponent<SpellBook>().spells[i].icon.Draw();
+                    j++;
+                }
+            }
+            else
+            {
+                images["SpellsIcon2"].isVisible = true;
+                images["SummonIcon2"].isVisible = true;
+                images["AurasIcon2"].isVisible = true;
             }
 
-            foreach (Image image in this.images.Values)
+                foreach (Image image in this.images.Values)
             {
                 image.Draw();
             }
