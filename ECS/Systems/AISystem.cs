@@ -63,7 +63,7 @@ namespace Warlocked
                         if (entities[i].GetComponent<Team>().team == 0)
                             entities[i].GetComponent<Appearance>().Animate(Appearance.Animation.AttackRight, attackTime, false);
                         if (entities[i].GetComponent<Team>().team == 1)
-                            entities[i].GetComponent<Appearance>().Animate(Appearance.Animation.AttackLeft, entities[i].GetComponent<Damage>().attackTime, false);
+                            entities[i].GetComponent<Appearance>().Animate(Appearance.Animation.AttackLeft, attackTime, false);
                         entities[i].GetComponent<Velocity>().velocity.X = 0;
                         entities[i].GetComponent<Velocity>().velocity.Y = 0;
                         entities[i].GetComponent<Damage>().isAttacking = false;
@@ -115,6 +115,7 @@ namespace Warlocked
             }
 
         }
+
         private void ActDefensive(Entity entity)
         {
             throw new NotImplementedException();

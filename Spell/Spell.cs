@@ -40,7 +40,7 @@ namespace Warlocked
             this.isCoolingDown = true;
         }
 
-        public void Update()
+        public virtual void Update()
         {
             gameTime = EntitySystem.BlackBoard.GetEntry<GameTime>("GameTime");
             if (coolDownTimer.IsReached(gameTime.ElapsedGameTime.Milliseconds))

@@ -42,6 +42,9 @@ namespace Warlocked
                                 if (entities[i].GetComponent<Mana>().maxMana < 10)
                                     entities[i].GetComponent<Mana>().maxMana += entities[j].GetComponent<Pickupable>().maxValue;
                                 entities[i].GetComponent<Mana>().currentMana += entities[j].GetComponent<Pickupable>().currentValue;
+                                if (entities[i].GetComponent<Mana>().currentMana > entities[i].GetComponent<Mana>().maxMana)
+                                    entities[i].GetComponent<Mana>().currentMana = entities[i].GetComponent<Mana>().maxMana;
+
                                 entities[j].Delete();
                                 LOGGER.Info("Pickup, MaxMana: " + entities[i].GetComponent<Mana>().maxMana);
 

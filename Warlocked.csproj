@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ECS\Components\AI.cs" />
+    <Compile Include="ECS\Components\Enchantment.cs" />
     <Compile Include="ECS\Components\Team.cs" />
     <Compile Include="ECS\Components\StatDisplay.cs" />
     <Compile Include="ECS\Components\SpawnPoint.cs" />
@@ -54,8 +55,10 @@
     <Compile Include="ECS\Components\Mana.cs" />
     <Compile Include="ECS\EntityTemplates\ManaShardTemplate.cs" />
     <Compile Include="ECS\EntityTemplates\ManaCrystalTemplate.cs" />
+    <Compile Include="ECS\EntityTemplates\EnchantmentTemplate.cs" />
     <Compile Include="ECS\EntityTemplates\MonsterTemplate.cs" />
     <Compile Include="ECS\EntityTemplates\PlayerTemplate.cs" />
+    <Compile Include="ECS\Systems\EnchantmentSystem.cs" />
     <Compile Include="ECS\Systems\OverstepSystem.cs" />
     <Compile Include="ECS\Systems\AISystem.cs" />
     <Compile Include="ECS\Systems\DeathSystem.cs" />

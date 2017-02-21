@@ -35,7 +35,9 @@ namespace Warlocked
                 {
                     foreach (int j in entities.Keys)
                     {
-                        if (entities[i].GetComponent<Team>() != entities[j].GetComponent<Team>() && entities[i].GetComponent<Damage>().attackRange > Vector2.Distance(entities[i].GetComponent<Position>().position, entities[j].GetComponent<Position>().position))
+                        // This does splash damage around the attacker at the moment. TODO : Improve
+                        if (entities[i].GetComponent<Team>() != entities[j].GetComponent<Team>() && 
+                            entities[i].GetComponent<Damage>().attackRange > Vector2.Distance(entities[i].GetComponent<Position>().position, entities[j].GetComponent<Position>().position))
                         {
                             LOGGER.Info("Attack");
                             entities[j].GetComponent<Health>().currentHealth -= entities[i].GetComponent<Damage>().damage;

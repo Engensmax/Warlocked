@@ -21,7 +21,7 @@ namespace Warlocked
 
         public ManaCrystalSpawnSystem()
         {
-            this.manaSpawnTimer = new Timer(new TimeSpan(6000));
+            this.manaSpawnTimer = new Timer(new TimeSpan(5000));
             this.manaSpawnTimer.IsReached(4000);
         }
         
@@ -29,8 +29,8 @@ namespace Warlocked
         {
             if (manaSpawnTimer.IsReached(EntitySystem.BlackBoard.GetEntry<GameTime>("GameTime").ElapsedGameTime.Milliseconds))
             {
-                SpawnCrystal(new List<int> { 32, 368, 32, 384 });
-                SpawnCrystal(new List<int> { 432, 768, 32, 384 });
+                SpawnCrystal(new List<int> { 32, 368, 64, 384 });
+                SpawnCrystal(new List<int> { 432, 768, 64, 384 });
 
                 manaSpawnTimer.Reset();
             }

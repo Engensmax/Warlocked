@@ -37,6 +37,9 @@ namespace Warlocked
         public Dictionary<string, ImageEffect> effectList;
         public string effects;
         public bool isVisible;
+        
+        // determines whether to set the position in the top left corner, or in the origin(middle) of the image
+        public bool isOriginBased;
 
         public FadeEffect fadeEffect;
         public SpriteSheetEffect spriteSheetEffect;
@@ -109,6 +112,7 @@ namespace Warlocked
             sourceRect = Rectangle.Empty;
             effectList = new Dictionary<string, ImageEffect>();
             isVisible = true;
+            isOriginBased = false;
         }
 
         public void LoadContent()
@@ -187,10 +191,17 @@ namespace Warlocked
                 var spriteBatch = EntitySystem.BlackBoard.GetEntry<SpriteBatch>("SpriteBatch");
                 origin = new Vector2(sourceRect.Width / 2,
                     sourceRect.Height / 2);
-                spriteBatch.Draw(texture, position + origin, sourceRect, Color.White * alpha,
-                    0.0f, origin, scale, SpriteEffects.None, 0.0f);
+                if (isOriginBased)
+                {
+                    spriteBatch.Draw(texture, position, sourceRect, Color.White * alpha,
+                       0.0f, origin, scale, SpriteEffects.None, 0.0f);
+                }
+                else
+                {
+                    spriteBatch.Draw(texture, position + origin, sourceRect, Color.White * alpha,
+                        0.0f, origin, scale, SpriteEffects.None, 0.0f);
+                }
             }
-            else { }
         }
     }
 }

@@ -63,6 +63,7 @@ namespace Warlocked
         {
             this.image = new XmlManager<Image>().Load(xmlPath);
             this.image.LoadContent();
+            this.image.isOriginBased = true;
 
         }
 

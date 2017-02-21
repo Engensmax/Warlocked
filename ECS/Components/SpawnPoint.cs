@@ -20,6 +20,7 @@ namespace Warlocked
         {
             this.image = new XmlManager<Image>().Load("Images/SpawnPoint.xml");
             this.image.LoadContent();
+            this.image.isOriginBased = true;
             this.RespawnTimer = new Timer(new TimeSpan(300));
         }
 

@@ -12,52 +12,48 @@ namespace Warlocked
     class SummonDinoGoblinSpell : SummoningSpell
     {
         private static readonly ILog LOGGER = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
+        private static readonly int coolDownTime = 2000;
 
-        public SummonDinoGoblinSpell() : base(400, "Images/Icons/DinoGoblin.xml")
+        public SummonDinoGoblinSpell() : base(coolDownTime, "Images/Icons/DinoGoblin.xml")
         {
             this.manaCost = 1;
             this.castTime = 400; // in milliseconds
         }
         public override void Cast(Entity caster, EntityWorld entityWorld)
         {
+            base.Cast(caster, entityWorld);
+
             LOGGER.Debug("DinoGoblin");
 
-            var goblin = entityWorld.CreateEntityFromTemplate(MonsterTemplate.Name);
-            goblin.GetComponent<Health>().currentHealth = 2;
-            goblin.GetComponent<Damage>().damage = 1;
+            entity.GetComponent<Health>().currentHealth = 2;
+            entity.GetComponent<Damage>().damage = 1;
 
+            entity.GetComponent<Velocity>().moveSpeed = 2;
+            entity.GetComponent<Velocity>().currentMoveSpeed = 2;
 
-            goblin.GetComponent<AI>().ai = AI.Behavior.Aggressive;
-            goblin.GetComponent<Team>().team = caster.GetComponent<Team>().team;
+            entity.GetComponent<AI>().ai = AI.Behavior.Aggressive;
+            
+            entity.GetComponent<Appearance>().Initialize("Images/DinoGoblin.xml");
+            entity.GetComponent<Appearance>().image.isActive = true;
+            entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
+            entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y = 0;
 
-            goblin.GetComponent<Position>().position = caster.GetComponent<Position>().position;
-            goblin.GetComponent<SpawnPoint>().position = goblin.GetComponent<Position>().position;
-            goblin.GetComponent<SpawnPoint>().image.position = goblin.GetComponent<Position>().position;
-
-            goblin.GetComponent<Appearance>().Initialize("Images/DinoGoblin.xml");
-            goblin.GetComponent<Appearance>().image.isActive = true;
-            goblin.GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
-            goblin.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y = 0;
-
-            goblin.GetComponent<Appearance>().animationsMap[Appearance.Animation.MoveRight] = 2;
-            goblin.GetComponent<Appearance>().animationsMap[Appearance.Animation.MoveLeft] = 0;
-            goblin.GetComponent<Appearance>().animationsMap[Appearance.Animation.AttackRight] = 3;
-            goblin.GetComponent<Appearance>().animationsMap[Appearance.Animation.AttackLeft] = 1;
-
-
-            goblin.GetComponent<Velocity>().moveSpeed = 2;
-            goblin.GetComponent<Velocity>().currentMoveSpeed = 2;
+            entity.GetComponent<Appearance>().animationsMap[Appearance.Animation.MoveRight] = 2;
+            entity.GetComponent<Appearance>().animationsMap[Appearance.Animation.MoveLeft] = 0;
+            entity.GetComponent<Appearance>().animationsMap[Appearance.Animation.AttackRight] = 3;
+            entity.GetComponent<Appearance>().animationsMap[Appearance.Animation.AttackLeft] = 1;
+            entity.GetComponent<Appearance>().animationsMap[Appearance.Animation.Spawn] = 1;
+            entity.GetComponent<Appearance>().animationsMap[Appearance.Animation.Respawn] = 1;
+            entity.GetComponent<Appearance>().animationsMap[Appearance.Animation.Die] = 1;
 
             // probably obsolete by now
-            if (caster.Id == 0)
-                goblin.GetComponent<Velocity>().velocity.X = goblin.GetComponent<Velocity>().currentMoveSpeed;
-            if (caster.Id == 1)
-                goblin.GetComponent<Velocity>().velocity.X = - goblin.GetComponent<Velocity>().currentMoveSpeed;
+            //if (caster.Id == 0)
+            //    entity.GetComponent<Velocity>().velocity.X = entity.GetComponent<Velocity>().currentMoveSpeed;
+            //if (caster.Id == 1)
+            //    entity.GetComponent<Velocity>().velocity.X = - entity.GetComponent<Velocity>().currentMoveSpeed;
 
-            goblin.Refresh();
+            entity.Refresh();
 
-            base.Cast(caster, entityWorld);
         }
     }
 }

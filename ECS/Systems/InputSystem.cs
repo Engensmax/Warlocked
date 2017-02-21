@@ -110,7 +110,7 @@ namespace Warlocked
                 else if (InputManager.Instance.KeyPressed(entity.GetComponent<Input>().
                             actionKeysMap[Input.Action.NextButton]))
                 {
-                    if (spellbook.spellMap[spellbook.currentMenu].Count > spellbook.currentSelection + 1)
+                    if (spellbook.spellMap[spellbook.currentMenu].Count > spellbook.currentSelection + 3)
                     {
                         spellbook.currentSelection += 3;
                         ChangeMenu();
@@ -132,6 +132,7 @@ namespace Warlocked
                 {
                    LOGGER.Info("Back");
                    spellbook.currentMenu = -1;
+                   spellbook.currentSelection = 0;
                    ChangeMenu();
 
                 }
@@ -151,18 +152,19 @@ namespace Warlocked
             }
         }
 
-        private void CastSpell(Entity entity, int spellNumber)
+        private void CastSpell(Entity entity, int menuNumber)
         {
-            if (spellbook.spellMenu.Count > spellNumber && 
-                spellbook.spells[spellbook.spellMenu[spellNumber]].manaCost <= entity.GetComponent<Mana>().currentMana && 
-                !spellbook.spells[spellbook.spellMenu[spellNumber]].isCoolingDown && 
+            if (spellbook.spellMenu.Count > menuNumber && 
+                spellbook.spells[spellbook.spellMenu[menuNumber]].manaCost <= entity.GetComponent<Mana>().currentMana && 
+                !spellbook.spells[spellbook.spellMenu[menuNumber]].isCoolingDown && 
                 entity.GetComponent<Input>().isActive)
             {
-                entity.GetComponent<Mana>().currentMana -= spellbook.spells[spellbook.spellMenu[spellNumber]].manaCost;
+                entity.GetComponent<Mana>().currentMana -= spellbook.spells[spellbook.spellMenu[menuNumber]].manaCost;
                 entity.GetComponent<Input>().isActive = false;
                 spellbook.isCasting = true;
-                spellbook.currentSpell = spellbook.spellMenu[spellNumber];
+                spellbook.currentSpell = spellbook.spellMenu[menuNumber];
                 spellbook.currentMenu = -1;
+                spellbook.currentSelection = 0;
                 ChangeMenu();
                 entity.GetComponent<Appearance>().Animate(Appearance.Animation.CastDown, spellbook.spells[spellbook.currentSpell].castTime, false);
                 entity.GetComponent<Velocity>().velocity.X = 0;

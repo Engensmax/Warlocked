@@ -24,9 +24,9 @@ namespace Warlocked
         public override void Process(Entity entity)
         {
             if ((entity.GetComponent<Team>().team == 0 &&
-                entity.GetComponent<Position>().position.X < 368) ||
+                entity.GetComponent<Position>().position.X < ScreenManager.Instance.Dimensions.X / 2) ||
                 (entity.GetComponent<Team>().team == 1 &&
-                entity.GetComponent<Position>().position.X > 368))
+                entity.GetComponent<Position>().position.X > ScreenManager.Instance.Dimensions.X / 2))
             {
                 entity.GetComponent<Velocity>().currentMoveSpeed = 0.8f * entity.GetComponent<Velocity>().moveSpeed;
 
