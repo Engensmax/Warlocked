@@ -123,6 +123,7 @@
     <Content Include="Content\Xml\HUD.xml" />
     <Content Include="Content\Xml\Images\DinoGoblin.xml" />
     <Content Include="Content\Xml\Images\FireCaster.xml" />
+    <Content Include="Content\Xml\Images\Icons\Rage.xml" />
     <Content Include="Content\Xml\Images\SpawnPoint.xml" />
     <Content Include="Content\Xml\Images\ManaCrystal.xml" />
     <Content Include="Content\Xml\Images\Icons\FireBall.xml" />

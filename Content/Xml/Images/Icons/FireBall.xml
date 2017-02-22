@@ -2,4 +2,8 @@
 <Image>
   <path>Icons/FireBallIcon</path>
   <isVisible>true</isVisible>
+  <scale>
+    <X>0.27343</X>
+    <Y>0.25</Y>
+  </scale>
 </Image>

@@ -82,7 +82,7 @@ namespace Warlocked
                 j = 0;
                 foreach (int i in player1.GetComponent<SpellBook>().spellMenu)
                 {
-                    player1.GetComponent<SpellBook>().spells[i].icon.position = new Vector2(190 + j * 70, 418);
+                    player1.GetComponent<SpellBook>().spells[i].icon.position = new Vector2(225 + j * 70, 449);
                     player1.GetComponent<SpellBook>().spells[i].icon.Draw();
                     j++;
                 }
@@ -103,7 +103,7 @@ namespace Warlocked
                 j = 0;
                 foreach (int i in player2.GetComponent<SpellBook>().spellMenu)
                 {
-                    player2.GetComponent<SpellBook>().spells[i].icon.position = new Vector2(191 + 210 + j * 70, 418);
+                    player2.GetComponent<SpellBook>().spells[i].icon.position = new Vector2(191 + 210 + 35 + j * 70, 449);
                     player2.GetComponent<SpellBook>().spells[i].icon.Draw();
                     j++;
                 }

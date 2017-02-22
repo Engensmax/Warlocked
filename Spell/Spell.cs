@@ -27,6 +27,7 @@ namespace Warlocked
         {
             this.iconPath = iconPath;
             this.icon = new XmlManager<Image>().Load(iconPath);
+            this.icon.isOriginBased = true;
             if (castImage != null)
                 castImage.LoadContent();
             this.isCoolingDown = false;
