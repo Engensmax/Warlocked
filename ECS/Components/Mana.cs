@@ -17,7 +17,7 @@ namespace Warlocked
         {
             this.maxMana = 0;
             this.currentMana = 0;
-            this.regenRate = 0.15f; // Mana per second
+            this.regenRate = 0.25f; // Mana per second
         }
         //obligatory for poolable Components
         public void Cleanup()

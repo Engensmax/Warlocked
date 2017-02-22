@@ -23,7 +23,7 @@ namespace Warlocked
         
         public override void Process(Entity entity)
         {
-            entity.GetComponent<Position>().position += entity.GetComponent<Velocity>().velocity;
+            entity.GetComponent<Position>().position += entity.GetComponent<Velocity>().velocity * 0.8f; 
         }
     }
 }

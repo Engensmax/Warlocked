@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.Xna.Framework;
 namespace Warlocked
 {
     abstract class SummoningSpell : Spell
@@ -19,7 +19,7 @@ namespace Warlocked
             base.Cast(caster, entityWorld);
             entity = entityWorld.CreateEntityFromTemplate(MonsterTemplate.Name);
             entity.GetComponent<Team>().team = caster.GetComponent<Team>().team;
-            entity.GetComponent<Position>().position = caster.GetComponent<Position>().position;
+            entity.GetComponent<Position>().position = caster.GetComponent<Position>().position + new Vector2(0, 64);
             entity.GetComponent<SpawnPoint>().position = entity.GetComponent<Position>().position;
             entity.GetComponent<SpawnPoint>().image.position = entity.GetComponent<Position>().position;
         }

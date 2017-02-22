@@ -35,7 +35,7 @@ namespace Warlocked
             entity = entityWorld.CreateEntityFromTemplate(EnchantmentTemplate.Name);
             entity.GetComponent<Team>().team = caster.GetComponent<Team>().team;
             LOGGER.Debug(caster.GetComponent<Team>().team);
-            if (entity.GetComponent<Team>().team == 0)
+            if (entity.GetComponent<Team>().team == 1)
                 entity.GetComponent<Enchantment>().enchantmentSlot = 0;
             else
                 entity.GetComponent<Enchantment>().enchantmentSlot = 2;

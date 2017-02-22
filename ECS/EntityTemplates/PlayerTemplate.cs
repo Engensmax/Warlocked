@@ -35,7 +35,10 @@ namespace Warlocked
 
             entity.GetComponent<SpellBook>().spells.Add(new SummonDinoGoblinSpell());
             entity.GetComponent<SpellBook>().spells.Add(new FireBallSpell());
+            entity.GetComponent<SpellBook>().spells.Add(new FireLanceSpell());
             entity.GetComponent<SpellBook>().spells.Add(new RageSpell());
+            entity.GetComponent<SpellBook>().spells.Add(new SummonFireBatSpell());
+            entity.GetComponent<SpellBook>().spells.Add(new HasteSpell());
 
             entity.GetComponent<SpellBook>().Load();
 
@@ -65,7 +68,7 @@ namespace Warlocked
             entity.GetComponent<Appearance>().animationsMap[Appearance.Animation.Die] =  16;
 
             entity.GetComponent<Appearance>().image.spriteSheetEffect.currentFrame.Y =
-                entity.GetComponent<Appearance>().animationsMap[Appearance.Animation.Spawn];
+            entity.GetComponent<Appearance>().animationsMap[Appearance.Animation.Spawn];
             entity.GetComponent<Appearance>().image.spriteSheetEffect.isActive = true;
             entity.GetComponent<Appearance>().image.spriteSheetEffect.isContinuous = false;
             entity.GetComponent<Appearance>().image.isActive = true;

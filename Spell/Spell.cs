@@ -53,7 +53,7 @@ namespace Warlocked
 
         }
 
-        public virtual void Enchant(EntityWorld entityWorld) { }
+        public virtual void Enchant(Entity enchantment, EntityWorld entityWorld) { }
 
         public void Draw()
         {

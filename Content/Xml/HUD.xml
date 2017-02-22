@@ -115,7 +115,7 @@
   <item>
     <Key>HealthBar1</Key>
     <Value>
-      <path>Bar</path>
+      <path>Bar2</path>
       <position>
         <X>0</X>
         <Y>416</Y>
@@ -178,7 +178,7 @@
   <item>
     <Key>HealthBar2</Key>
     <Value>
-      <path>Bar</path>
+      <path>Bar2</path>
       <position>
         <X>610</X>
         <Y>416</Y>

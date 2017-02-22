@@ -48,12 +48,6 @@ namespace Warlocked
             entity.GetComponent<Appearance>().animationsMap[Appearance.Animation.Respawn] = 1;
             entity.GetComponent<Appearance>().animationsMap[Appearance.Animation.Die] = 1;
 
-            // probably obsolete by now
-            //if (caster.Id == 0)
-            //    entity.GetComponent<Velocity>().velocity.X = entity.GetComponent<Velocity>().currentMoveSpeed;
-            //if (caster.Id == 1)
-            //    entity.GetComponent<Velocity>().velocity.X = - entity.GetComponent<Velocity>().currentMoveSpeed;
-
             entity.Refresh();
 
         }
