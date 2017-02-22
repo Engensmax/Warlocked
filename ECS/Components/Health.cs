@@ -10,13 +10,13 @@ namespace Warlocked
     [Artemis.Attributes.ArtemisComponentPool()]
     class Health : ComponentPoolable
     {
-        public float maxHealth, currentHealth, regenRate;
+        public float health, maxHealth, currentHealth, regenRate;
         public Timer DeathTimer;
 
         public Health()
         {
             this.DeathTimer = new Timer(new TimeSpan(300));
-            this.currentHealth = 1;
+            this.currentHealth = this.health = 1;
             this.regenRate = 0;
         }
         //obligatory for poolable Components

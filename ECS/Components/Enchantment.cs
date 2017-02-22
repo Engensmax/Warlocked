@@ -10,8 +10,7 @@ namespace Warlocked
     class Enchantment : ComponentPoolable
     {
         public int enchantmentSlot; // 0, 1, 2 or 3
-        public EnchantmentSpell spell;
-
+        public int spellBookSlot;
         public Enchantment()
         {
             this.enchantmentSlot = 0;

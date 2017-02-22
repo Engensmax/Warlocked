@@ -40,7 +40,7 @@ namespace Warlocked
                             entities[i].GetComponent<Damage>().attackRange > Vector2.Distance(entities[i].GetComponent<Position>().position, entities[j].GetComponent<Position>().position))
                         {
                             LOGGER.Info("Attack");
-                            entities[j].GetComponent<Health>().currentHealth -= entities[i].GetComponent<Damage>().damage;
+                            entities[j].GetComponent<Health>().currentHealth -= entities[i].GetComponent<Damage>().currentDamage;
                             if (entities[i].HasComponent<SpawnPoint>())
                                 entities[i].GetComponent<SpawnPoint>().isRespawning = true;
                             

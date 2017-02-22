@@ -9,7 +9,8 @@ namespace Warlocked
     [Artemis.Attributes.ArtemisComponentPool()]
     class Damage : ComponentPoolable
     {
-        public float damage;
+        public int damage;
+        public int currentDamage;
         public int attackTime;
         public int attackRange;
         public bool isAttacking;
@@ -17,7 +18,7 @@ namespace Warlocked
 
         public Damage()
         {
-            this.damage = 1;
+            this.currentDamage = 1;
             this.attackTime = 250; // in milliseconds
             this.attackRange = 50; // in pixels
             this.isAttacking = false;

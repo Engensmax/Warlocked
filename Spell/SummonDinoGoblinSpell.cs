@@ -25,8 +25,10 @@ namespace Warlocked
 
             LOGGER.Debug("DinoGoblin");
 
+            entity.GetComponent<Health>().health = 2;
             entity.GetComponent<Health>().currentHealth = 2;
             entity.GetComponent<Damage>().damage = 1;
+            entity.GetComponent<Damage>().currentDamage = 1;
 
             entity.GetComponent<Velocity>().moveSpeed = 2;
             entity.GetComponent<Velocity>().currentMoveSpeed = 2;

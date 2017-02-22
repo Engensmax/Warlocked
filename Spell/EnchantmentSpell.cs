@@ -10,6 +10,7 @@ namespace Warlocked
 {
     public abstract class EnchantmentSpell : Spell
     {
+        private static readonly ILog LOGGER = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         protected Entity entity;
 
         protected EnchantmentSpell(int coolDown, string iconPath) : base(coolDown, iconPath)
@@ -18,29 +19,34 @@ namespace Warlocked
         {
             base.Cast(caster, entityWorld);
 
-
-            foreach (Entity entity in entityWorld.EntityManager.GetEntities(Aspect.One(typeof(Enchantment))))
+            foreach (Entity e in entityWorld.EntityManager.GetEntities(Aspect.One(typeof(Enchantment))))
             {
-                if (entity.GetComponent<Team>().team == caster.GetComponent<Team>().team)
+                if (e.GetComponent<Team>().team == caster.GetComponent<Team>().team)
                 {
-                    if (entity.GetComponent<Enchantment>().enchantmentSlot != 1 ||
-                        entity.GetComponent<Enchantment>().enchantmentSlot != 3)
-                        entity.GetComponent<Enchantment>().enchantmentSlot++;
+                    if (e.GetComponent<Enchantment>().enchantmentSlot != 1 ||
+                        e.GetComponent<Enchantment>().enchantmentSlot != 3)
+                        e.GetComponent<Enchantment>().enchantmentSlot++;
                     else
-                        entity.Delete();
+                        e.Delete();
                 }
             }
 
 
             entity = entityWorld.CreateEntityFromTemplate(EnchantmentTemplate.Name);
             entity.GetComponent<Team>().team = caster.GetComponent<Team>().team;
-            entity.GetComponent<Enchantment>().enchantmentSlot = 0;
+            LOGGER.Debug(caster.GetComponent<Team>().team);
+            if (entity.GetComponent<Team>().team == 0)
+                entity.GetComponent<Enchantment>().enchantmentSlot = 0;
+            else
+                entity.GetComponent<Enchantment>().enchantmentSlot = 2;
+
+            entity.GetComponent<Enchantment>().spellBookSlot = caster.GetComponent<SpellBook>().currentSpell;
+
+
+            entity.GetComponent<Appearance>().Initialize("Images/FireCaster.xml");
+
         }
 
-        public override void Update()
-        {
-            base.Update();
-        } 
 
     }
 }

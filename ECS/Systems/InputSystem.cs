@@ -214,14 +214,16 @@ namespace Warlocked
             {
                 entity.GetComponent<Velocity>().velocity.Y =
                     -entity.GetComponent<Velocity>().currentMoveSpeed;
+                if (entity.GetComponent<Velocity>().velocity.X == 0)
                 entity.GetComponent<Appearance>().Animate(Appearance.Animation.MoveUp, 500, true);
             }
             else if (InputManager.Instance.KeyDown(entity.GetComponent<Input>().
                 actionKeysMap[Input.Action.MoveDown]))
             {
-                entity.GetComponent<Appearance>().Animate(Appearance.Animation.MoveDown, 500, true);
                 entity.GetComponent<Velocity>().velocity.Y =
-                    entity.GetComponent<Velocity>().currentMoveSpeed;
+                   entity.GetComponent<Velocity>().currentMoveSpeed;
+                if (entity.GetComponent<Velocity>().velocity.X == 0)
+                    entity.GetComponent<Appearance>().Animate(Appearance.Animation.MoveDown, 500, true);
             }
             else
                 entity.GetComponent<Velocity>().velocity.Y = 0;

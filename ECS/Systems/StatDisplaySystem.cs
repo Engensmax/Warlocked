@@ -25,7 +25,7 @@ namespace Warlocked
         
         public override void Process(Entity entity)
         {
-            entity.GetComponent<StatsDisplay>().stats = "(" + entity.GetComponent<Damage>().damage.ToString() + "/" + entity.GetComponent<Health>().currentHealth.ToString() + ")";
+            entity.GetComponent<StatsDisplay>().stats = "(" + entity.GetComponent<Damage>().currentDamage.ToString() + "/" + entity.GetComponent<Health>().currentHealth.ToString() + ")";
             entity.GetComponent<StatsDisplay>().position = entity.GetComponent<Position>().position + new Vector2(0, entity.GetComponent<Appearance>().image.sourceRect.Height / 2);
 
             EntitySystem.BlackBoard.GetEntry<SpriteBatch>("SpriteBatch").DrawString(EntitySystem.BlackBoard.GetEntry<ContentManager>("ContentManager").Load<SpriteFont>(entity.GetComponent<StatsDisplay>().font), entity.GetComponent<StatsDisplay>().stats, entity.GetComponent<StatsDisplay>().position, Color.PaleVioletRed);

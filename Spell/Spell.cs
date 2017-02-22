@@ -52,6 +52,8 @@ namespace Warlocked
 
         }
 
+        public virtual void Enchant(EntityWorld entityWorld) { }
+
         public void Draw()
         {
             if (castImage != null)

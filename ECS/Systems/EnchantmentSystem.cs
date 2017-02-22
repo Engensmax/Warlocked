@@ -27,7 +27,25 @@ namespace Warlocked
 
         public override void Process(Entity entity)
         {
-            //entity.GetComponent<Enchantment>();
+            if (entity.GetComponent<Enchantment>().enchantmentSlot == 0 ||
+                entity.GetComponent<Enchantment>().enchantmentSlot == 1)
+                entityWorld.EntityManager.ActiveEntities[0].GetComponent<SpellBook>().spells[entity.GetComponent<Enchantment>().spellBookSlot].Enchant(entityWorld);
+
+            if (entity.GetComponent<Enchantment>().enchantmentSlot == 2 ||
+                entity.GetComponent<Enchantment>().enchantmentSlot == 3)
+                entityWorld.EntityManager.ActiveEntities[1].GetComponent<SpellBook>().spells[entity.GetComponent<Enchantment>().spellBookSlot].Enchant(entityWorld);
+
+            if (entity.GetComponent<Enchantment>().enchantmentSlot == 0)
+                entity.GetComponent<Position>().position = new Vector2(250, 32);
+
+            if (entity.GetComponent<Enchantment>().enchantmentSlot == 1)
+                entity.GetComponent<Position>().position = new Vector2(350, 32);
+
+            if (entity.GetComponent<Enchantment>().enchantmentSlot == 2)
+                entity.GetComponent<Position>().position = new Vector2(450, 32);
+
+            if (entity.GetComponent<Enchantment>().enchantmentSlot == 3)
+                entity.GetComponent<Position>().position = new Vector2(550, 32);
         }
     }
 }
