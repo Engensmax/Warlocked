@@ -58,7 +58,11 @@
     <Compile Include="ECS\EntityTemplates\EnchantmentTemplate.cs" />
     <Compile Include="ECS\EntityTemplates\MonsterTemplate.cs" />
     <Compile Include="ECS\EntityTemplates\PlayerTemplate.cs" />
+    <Compile Include="ECS\Systems\EXAMPLEEventSubscriberSystem.cs" />
+    <Compile Include="ECS\Systems\EXAMPLEQueueSubscriberSystem.cs" />
     <Compile Include="ECS\Systems\EnchantmentSystem.cs" />
+    <Compile Include="ECS\Systems\EXAMPLEQueuePublisherSystem.cs" />
+    <Compile Include="ECS\Systems\EXAMPLEEventPublisherSystem.cs" />
     <Compile Include="ECS\Systems\OverstepSystem.cs" />
     <Compile Include="ECS\Systems\AISystem.cs" />
     <Compile Include="ECS\Systems\DeathSystem.cs" />

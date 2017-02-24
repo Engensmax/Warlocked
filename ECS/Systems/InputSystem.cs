@@ -177,6 +177,7 @@ namespace Warlocked
             if (InputManager.Instance.KeyPressed(entity.GetComponent<Input>().
                            actionKeysMap[Input.Action.Attack]))
             {
+
                 entity.GetComponent<Input>().isActive = false;
                 entity.GetComponent<Damage>().isAttacking = true;
 

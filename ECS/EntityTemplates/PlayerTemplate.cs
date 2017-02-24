@@ -34,6 +34,9 @@ namespace Warlocked
             entity.AddComponentFromPool<Velocity>();
 
             entity.GetComponent<SpellBook>().spells.Add(new SummonDinoGoblinSpell());
+            entity.GetComponent<SpellBook>().spells.Add(new SummonDinoGoblinSpell());
+            entity.GetComponent<SpellBook>().spells.Add(new SummonDinoGoblinSpell());
+            entity.GetComponent<SpellBook>().spells.Add(new SummonDinoGoblinSpell());
             entity.GetComponent<SpellBook>().spells.Add(new FireBallSpell());
             entity.GetComponent<SpellBook>().spells.Add(new FireLanceSpell());
             entity.GetComponent<SpellBook>().spells.Add(new RageSpell());

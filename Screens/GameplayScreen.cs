@@ -34,6 +34,9 @@ namespace Warlocked
 
             this.world.InitializeAll(true);
 
+            this.world.SystemManager.GetSystem<Input3System>().Attacked += this.world.SystemManager.GetSystem<Attack3System>().OnAttacked;
+
+
             player1 = world.CreateEntityFromTemplate(PlayerTemplate.Name); // unique id should be 0
             player2 = world.CreateEntityFromTemplate(PlayerTemplate.Name); // unique id should be 1
             player1.GetComponent<Input>().Initialize(1);

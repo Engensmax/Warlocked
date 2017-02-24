@@ -1987,7 +1987,7 @@
             <summary>Called when [change].</summary>
             <param name="entity">The entity.</param>
         </member>
-        <member name="M:Artemis.System.TagSystem.ProcessSystem">
+        <member name="M:Artemis.System.TagSystem.Process">
             <summary>this processes the system.</summary>
         </member>
         <member name="M:Artemis.System.TagSystem.Process(Artemis.Entity)">
